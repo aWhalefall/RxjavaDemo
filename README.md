@@ -11,6 +11,8 @@
  3.负责认真
  4.作为开源，更应该认真，负责
  
+ 5.当然可以认识一些志同道合的朋友
+ 
  ```
  
  
@@ -273,3 +275,14 @@ Blocking 阻塞Observable的操作符
 转发Observable的部分值（条件/布尔/过滤操作）
 对Observable发射的数据序列求值（算术/聚合操作）
 ```
+
+### 贡献人员  章节
+
+1.  279642707@qq.com  认领 变换操作章节
+2.
+3.
+4.
+5.
+
+
+>rxjava 中文翻译文档 https://mcxiaoke.gitbooks.io/rxdocs/content/operators/Transforming-Observables.html
