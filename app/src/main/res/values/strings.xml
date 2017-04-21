@@ -1,3 +1,553 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">RxJava</string>
+
+    <string name="activity_main_press_again_to_quit">再按一次退出程序</string>
+
+    <string name="activity_description">描述</string>
+    <string name="activity_graph">示意图</string>
+    <string name="activity_sample_code">示例代码</string>
+    <string name="activity_output">输出</string>
+
+    <string name="activity_main_1_creating_observables">1. 创建操作</string>
+    <string name="activity_main_2_transforming_observables">2. 变换操作</string>
+    <string name="activity_main_3_filtering_observables">3. 过滤操作</string>
+    <string name="activity_main_4_combining_observables">4. 组合操作</string>
+    <string name="activity_main_5_error_handling_operators">5. 错误处理</string>
+    <string name="activity_main_6_observable_utility_operators">6. 辅助操作</string>
+    <string name="activity_main_7_conditional_and_boolean_operators">7. 条件和布尔操作</string>
+    <string name="activity_main_8_mathematical_and_aggregate_operators">8. 算术和聚合操作</string>
+    <string name="activity_main_9_backpressure_operators">9. 反压操作</string>
+    <string name="activity_main_10_connectable_observable_operators">10. 连接操作</string>
+    <string name="activity_main_11_operators_to_convert_observables">11. 转换操作</string>
+
+    <!-- 1. 创建操作 start -->
+    <string name="activity_category1_creating_observables_1_create">1.1 create</string>
+    <string name="activity_category1_creating_observables_1_create_description">&#160;&#160;&#160;&#160;你可以使用 Create 操作符从头开始创建一个Observable，给这个操作符传递一个接受观察者作为参数的函数，编写这个函数让它的行为表现为一个Observable--恰当的调用观察者的onNext，onError和onCompleted方法。
+        \n&#160;&#160;&#160;&#160;一个形式正确的有限Observable必须尝试调用观察者的onCompleted正好一次或者它的onError正好一次，而且此后不能再调用观察者的任何其它方法。
+        \n&#160;&#160;&#160;&#160;RxJava将这个操作符实现为 create 方法。
+        \n&#160;&#160;&#160;&#160;建议你在传递给create方法的函数中检查观察者的isUnsubscribed状态，以便在没有观察者的时候，让你的Observable停止发射数据或者做昂贵的运算。
+        \n&#160;&#160;&#160;&#160; create 方法默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category1_creating_observables_2_defer">1.2 defer</string>
+    <string name="activity_category1_creating_observables_2_defer_description">&#160;&#160;&#160;&#160;Defer操作符会一直等待直到有观察者订阅它，然后它使用Observable工厂方法生成一个Observable。它对每个观察者都这样做，因此尽管每个订阅者都以为自己订阅的是同一个Observable，事实上每个订阅者获取的是它们自己的单独的数据序列。
+        \n&#160;&#160;&#160;&#160;在某些情况下，等待直到最后一分钟（就是知道订阅发生时）才生成Observable可以确保Observable包含最新的数据。
+        \n&#160;&#160;&#160;&#160;RxJava将这个操作符实现为 defer 方法。这个操作符接受一个你选择的Observable工厂函数作为单个参数。这个函数没有参数，返回一个Observable。
+        \n&#160;&#160;&#160;&#160;defer方法默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category1_creating_observables_2_defer_code_prefix_introductions">由于 defer 操作有以下几个特点：
+        \n&#160;&#160;&#160;&#160;1) 订阅后才执行
+        \n&#160;&#160;&#160;&#160;2) 每次都会重新创建新的Observable
+        \n故本例从这两个特点进行说明。
+        \n本例参考《Android RxJava使用介绍（二） RxJava的操作符》- 呼啸而过11。
+        \n\n由运行结果可以看出：
+        \n&#160;&#160;&#160;&#160;1) 订阅后才执行: just操作符是在创建Observable就进行了赋值操作，而defer是在订阅者订阅时才创建Observable，此时才进行真正的赋值操作，保证Observable的状态是最新的。
+        \n&#160;&#160;&#160;&#160;2) 每次都会重新创建新的Observable(待验证)\n</string>
+
+    <string name="activity_category1_creating_observables_31_empty">1.3.1 empty</string>
+    <string name="activity_category1_creating_observables_32_never">1.3.2 never</string>
+    <string name="activity_category1_creating_observables_33_throw">1.3.3 throw</string>
+    <string name="activity_category1_creating_observables_31_empty_description">&#160;&#160;&#160;&#160;创建一个不发射任何数据但是正常终止的Observable。
+        \n&#160;&#160;&#160;&#160;empty操作符一般会跟其它操作符配合使用。</string>
+    <string name="activity_category1_creating_observables_32_never_description">&#160;&#160;&#160;&#160;创建一个不发射数据也不终止的Observable。</string>
+    <string name="activity_category1_creating_observables_33_throw_description">&#160;&#160;&#160;&#160;创建一个不发射数据以一个错误终止的Observable。</string>
+
+    <string name="activity_category1_creating_observables_4_from">1.4 from</string>
+    <string name="activity_category1_creating_observables_4_from_description">&#160;&#160;&#160;&#160;将其它种类的对象和数据类型转换为Observable。
+        \n&#160;&#160;&#160;&#160;当你使用Observable时，如果你要处理的数据都可以转换成展现为Observables，而不是需要混合使用Observables和其它类型的数据，会非常方便。这让你在数据流的整个生命周期中，可以使用一组统一的操作符来管理它们。
+        \n&#160;&#160;&#160;&#160;例如，Iterable可以看成是同步的Observable；Future，可以看成是总是只发射单个数据的Observable。通过显式地将那些数据转换为Observables，你可以像使用Observable一样与它们交互。
+        \n&#160;&#160;&#160;&#160;因此，大部分ReactiveX实现都提供了将语言特定的对象和数据结构转换为Observables的方法。
+        \n&#160;&#160;&#160;&#160;在RxJava中，from操作符可以转换Future、Iterable和数组。对于Iterable和数组，产生的Observable会发射Iterable或数组的每一项数据。
+        \n&#160;&#160;&#160;&#160;对于Future，它会发射Future.get()方法返回的单个数据。from方法有一个可接受两个可选参数的版本，分别指定超时时长和时间单位。如果过了指定的时长Future还没有返回一个值，这个Observable会发射错误通知并终止。
+        \n&#160;&#160;&#160;&#160;from默认不在任何特定的调度器上执行。然而你可以将Scheduler作为可选的第二个参数传递给Observable，它会在那个调度器上管理这个Future。</string>
+
+    <string name="activity_category1_creating_observables_5_interval">1.5 interval</string>
+    <string name="activity_category1_creating_observables_5_interval_description">&#160;&#160;&#160;&#160;创建一个按固定时间间隔发射整数序列的Observable。
+        \n&#160;&#160;&#160;&#160;Interval操作符返回一个Observable，它按固定的时间间隔发射一个无限递增的整数序列。
+        \n&#160;&#160;&#160;&#160;还有一个版本的interval返回一个Observable，它在指定延迟之后先发射一个零值，然后再按照指定的时间间隔发射递增的数字。这个版本的interval在RxJava 1.0.0中叫做timer，但是那个方法已经不建议使用了，因为一个名叫interval的操作符有同样的功能。
+        \n&#160;&#160;&#160;&#160;interval默认在computation调度器上执行。你也可以传递一个可选的Scheduler参数来指定调度器。
+        \n&#160;&#160;&#160;&#160;需要注意的是这个对象是运行在computation Scheduler，所以如果需要在view中显示结果，要在主线程中订阅。</string>
+
+    <string name="activity_category1_creating_observables_6_just">1.6 just</string>
+    <string name="activity_category1_creating_observables_6_just_description">&#160;&#160;&#160;&#160;创建一个发射指定值的Observable。
+        \n&#160;&#160;&#160;&#160;Just将单个数据转换为发射那个数据的Observable。
+        \n&#160;&#160;&#160;&#160;Just类似于From，但是From会将数组或Iterable的数据取出然后逐个发射，而Just只是简单的原样发射，将数组或Iterable当做单个数据。
+        \n&#160;&#160;&#160;&#160;注意：如果你传递null给Just，它会返回一个发射null值的Observable。不要误认为它会返回一个空Observable（完全不发射任何数据的Observable），如果需要空Observable你应该使用Empty操作符。
+        \n&#160;&#160;&#160;&#160;RxJava将这个操作符实现为just函数，它接受一至九个参数，返回一个按参数列表顺序发射这些数据的Observable。</string>
+
+    <string name="activity_category1_creating_observables_7_range">1.7 range</string>
+    <string name="activity_category1_creating_observables_7_range_description">&#160;&#160;&#160;&#160;创建一个发射特定整数序列的Observable。
+        \n&#160;&#160;&#160;&#160;Range操作符发射一个范围内的有序整数序列，你可以指定范围的起始和长度。
+        \n&#160;&#160;&#160;&#160;RxJava将这个操作符实现为range函数，它接受两个参数，一个是范围的起始值，一个是范围的数据的数目。如果你将第二个参数设为0，将导致Observable不发射任何数据（如果设置为负数，会抛异常）。
+        \n&#160;&#160;&#160;&#160;range默认不在任何特定的调度器上执行。有一个变体可以通过可选参数指定Scheduler。</string>
+
+    <string name="activity_category1_creating_observables_8_repeat">1.8 repeat</string>
+    <string name="activity_category1_creating_observables_8_repeat_description">&#160;&#160;&#160;&#160;创建一个发射特定数据重复多次的Observable。
+        \n&#160;&#160;&#160;&#160;Repeat重复地发射数据。某些实现允许你重复的发射某个数据序列，还有一些允许你限制重复的次数。
+        \n&#160;&#160;&#160;&#160;RxJava将这个操作符实现为repeat方法。它不是创建一个Observable，而是重复发射原始Observable的数据序列，这个序列或者是无限的，或者通过repeat(n)指定重复次数。
+        \n&#160;&#160;&#160;&#160;repeat操作符默认在trampoline调度器上执行。有一个变体可以通过可选参数指定Scheduler。</string>
+
+    <string name="activity_category1_creating_observables_9_start">1.9 start</string>
+    <string name="activity_category1_creating_observables_9_start_description">&#160;&#160;&#160;&#160;返回一个Observable，它发射一个类似于函数声明的值。
+        \n&#160;&#160;&#160;&#160;编程语言有很多种方法可以从运算结果中获取值，它们的名字一般叫functions, futures, actions, callables, runnables等等。在Start目录下的这组操作符可以让它们表现得像Observable，因此它们可以在Observables调用链中与其它Observable搭配使用。
+        \n&#160;&#160;&#160;&#160;Start操作符的多种RxJava实现都属于可选的rxjava-async模块。
+        \n&#160;&#160;&#160;&#160;rxjava-async模块包含start操作符，它接受一个函数作为参数，调用这个函数获取一个值，然后返回一个会发射这个值给后续观察者的Observable。
+        \n&#160;&#160;&#160;&#160;注意：这个函数只会被执行一次，即使多个观察者订阅这个返回的Observable。</string>
+
+    <string name="activity_category1_creating_observables_10_timer">1.10 timer</string>
+    <string name="activity_category1_creating_observables_10_timer_description">&#160;&#160;&#160;&#160;创建一个Observable，它在一个给定的延迟后发射一个特殊的值。
+        \n&#160;&#160;&#160;&#160;Timer操作符创建一个在给定的时间段之后返回一个特殊值的Observable。
+        \n&#160;&#160;&#160;&#160;timer返回一个Observable，它在延迟一段给定的时间后发射一个简单的数字0。
+        \n&#160;&#160;&#160;&#160;timer操作符默认在computation调度器上执行。有一个变体可以通过可选参数指定Scheduler。</string>
+    <!-- 1. 创建操作 end -->
+
+    <!-- 2. 变换操作 start -->
+    <string name="activity_category2_transforming_observables_1_map">2.1 map</string>
+    <string name="activity_category2_transforming_observables_1_map_description">&#160;&#160;&#160;&#160;对Observable发射的每一项数据应用一个函数，执行变换操作。
+        \n&#160;&#160;&#160;&#160;Map操作符对原始Observable发射的每一项数据应用一个你选择的函数，然后返回一个发射这些结果的Observable。
+        \n&#160;&#160;&#160;&#160;这个操作符默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category2_transforming_observables_2_flatmap">2.2 flatMap</string>
+    <string name="activity_category2_transforming_observables_2_flatmap_description">&#160;&#160;&#160;&#160;FlatMap将一个发射数据的Observable变换为多个Observables，然后将它们发射的数据合并后放进一个单独的Observable。
+        \n&#160;&#160;&#160;&#160;FlatMap操作符使用一个指定的函数对原始Observable发射的每一项数据执行变换操作，这个函数返回一个本身也发射数据的Observable，然后FlatMap合并这些Observables发射的数据，最后将合并后的结果当做它自己的数据序列发射。
+        \n&#160;&#160;&#160;&#160;这个方法是很有用的，例如，当你有一个这样的Observable：它发射一个数据序列，这些数据本身包含Observable成员或者可以变换为Observable，因此你可以创建一个新的Observable发射这些次级Observable发射的数据的完整集合。
+        \n&#160;&#160;&#160;&#160;注意：FlatMap对这些Observables发射的数据做的是合并(merge)操作，因此它们可能是交错的。
+        \n&#160;&#160;&#160;&#160;在许多语言特定的实现中，还有一个操作符不会让变换后的Observables发射的数据交错，它按照严格的顺序发射这些数据，这个操作符通常被叫作ConcatMap或者类似的名字。
+        \n&#160;&#160;&#160;&#160;注意：如果任何一个通过这个flatMap操作产生的单独的Observable调用onError异常终止了，这个Observable自身会立即调用onError并终止。</string>
+
+    <string name="activity_category2_transforming_observables_3_scan">2.3 scan</string>
+    <string name="activity_category2_transforming_observables_3_scan_description">&#160;&#160;&#160;&#160;连续地对数据序列的每一项应用一个函数，然后连续发射结果。
+        \n&#160;&#160;&#160;&#160;Scan操作符对原始Observable发射的第一项数据应用一个函数，然后将那个函数的结果作为自己的第一项数据发射。它将函数的结果同第二项数据一起填充给这个函数来产生它自己的第二项数据。它持续进行这个过程来产生剩余的数据序列。这个操作符在某些情况下被叫做accumulator。</string>
+
+    <string name="activity_category2_transforming_observables_4_groupby">2.4 groupBy</string>
+    <string name="activity_category2_transforming_observables_4_groupby_description">&#160;&#160;&#160;&#160;将一个Observable分拆为一些Observables集合，它们中的每一个发射原始Observable的一个子序列。
+        \n&#160;&#160;&#160;&#160;GroupBy操作符将原始Observable分拆为一些Observables集合，它们中的每一个发射原始Observable数据序列的一个子序列。哪个数据项由哪一个Observable发射是由一个函数判定的，这个函数给每一项指定一个Key，Key相同的数据会被同一个Observable发射。
+        \n&#160;&#160;&#160;&#160;RxJava实现了groupBy操作符。它返回Observable的一个特殊子类GroupedObservable，实现了GroupedObservable接口的对象有一个额外的方法getKey，这个Key用于将数据分组到指定的Observable。
+        \n&#160;&#160;&#160;&#160;有一个版本的groupBy允许你传递一个变换函数，这样它可以在发射结果GroupedObservable之前改变数据项。
+        \n&#160;&#160;&#160;&#160;注意：groupBy将原始Observable分解为一个发射多个GroupedObservable的Observable，一旦有订阅，每个GroupedObservable就开始缓存数据。因此，如果你忽略这些GroupedObservable中的任何一个，这个缓存可能形成一个潜在的内存泄露。因此，如果你不想观察，也不要忽略GroupedObservable。你应该使用像take(0)这样会丢弃自己的缓存的操作符。
+        \n&#160;&#160;&#160;&#160;如果你取消订阅一个GroupedObservable，那个Observable将会终止。如果之后原始的Observable又发射了一个与这个Observable的Key匹配的数据，groupBy将会为这个Key创建一个新的GroupedObservable。
+        \n&#160;&#160;&#160;&#160;groupBy默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category2_transforming_observables_5_buffer">2.5 buffer</string>
+    <string name="activity_category2_transforming_observables_5_buffer_description">&#160;&#160;&#160;&#160;定期收集Observable的数据放进一个数据包裹，然后发射这些数据包裹，而不是一次发射一个值。
+        \n&#160;&#160;&#160;&#160;Buffer操作符将一个Observable变换为另一个，原来的Observable正常发射数据，变换产生的Observable发射这些数据的缓存集合。Buffer操作符在很多语言特定的实现中有很多种变体，它们在如何缓存这个问题上存在区别。
+        \n&#160;&#160;&#160;&#160;注意：如果原来的Observable发射了一个onError通知，Buffer会立即传递这个通知，而不是首先发射缓存的数据，即使在这之前缓存中包含了原始Observable发射的数据。
+        \n&#160;&#160;&#160;&#160;Window操作符与Buffer类似，但是它在发射之前把收集到的数据放进单独的Observable，而不是放进一个数据结构。</string>
+
+    <string name="activity_category2_transforming_observables_6_window">2.6 window</string>
+    <string name="activity_category2_transforming_observables_6_window_description">&#160;&#160;&#160;&#160;定期将来自原始Observable的数据分解为一个Observable窗口，发射这些窗口，而不是每次发射一项数据。
+        \n&#160;&#160;&#160;&#160;Window和Buffer类似，但不是发射来自原始Observable的数据包，它发射的是Observables，这些Observables中的每一个都发射原始Observable数据的一个子集，最后发射一个onCompleted通知。
+        \n&#160;&#160;&#160;&#160;和Buffer一样，Window有很多变体，每一种都以自己的方式将原始Observable分解为多个作为结果的Observable，每一个都包含一个映射原始数据的window。用Window操作符的术语描述就是，当一个窗口打开(when a window "opens")意味着一个新的Observable已经发射（产生）了，而且这个Observable开始发射来自原始Observable的数据；当一个窗口关闭(when a window "closes")意味着发射(产生)的Observable停止发射原始Observable的数据，并且发射终止通知onCompleted给它的观察者们。</string>
+    <!-- 2. 变换操作 end -->
+
+    <!-- 3. 过滤操作 start -->
+    <string name="activity_category3_filtering_observables_1_filter">3.1 filter</string>
+    <string name="activity_category3_filtering_observables_1_filter_description">&#160;&#160;&#160;&#160;只发射通过了谓词测试的数据项。
+        \n&#160;&#160;&#160;&#160;Filter操作符使用你指定的一个谓词函数测试数据项，只有通过测试的数据才会被发射。
+        \n&#160;&#160;&#160;&#160;filter默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category3_filtering_observables_2_take_last">3.2 takeLast</string>
+    <string name="activity_category3_filtering_observables_2_take_last_description">&#160;&#160;&#160;&#160;发射Observable发射的最后N项数据。
+        \n&#160;&#160;&#160;&#160;使用TakeLast操作符修改原始Observable，你可以只发射Observable发射的后N项数据，忽略前面的数据。
+        \n&#160;&#160;&#160;&#160;使用takeLast操作符，你可以只发射原始Observable发射的后N项数据，忽略之前的数据。注意：这会延迟原始Observable发射的任何数据项，直到它全部完成。
+        \n&#160;&#160;&#160;&#160;takeLast的这个变体默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category3_filtering_observables_3_last">3.3 last</string>
+    <string name="activity_category3_filtering_observables_3_last_description">&#160;&#160;&#160;&#160;只发射最后一项（或者满足某个条件的最后一项）数据。
+        \n&#160;&#160;&#160;&#160;如果你只对Observable发射的最后一项数据，或者满足某个条件的最后一项数据感兴趣，你可以使用Last操作符。
+        \n&#160;&#160;&#160;&#160;在某些实现中，Last没有实现为一个返回Observable的过滤操作符，而是实现为一个在当时就发射原始Observable指定数据项的阻塞函数。在这些实现中，如果你想要的是一个过滤操作符，最好使用TakeLast(1)。
+        \n&#160;&#160;&#160;&#160;在RxJava中的实现是last和lastOrDefault。
+        \n&#160;&#160;&#160;&#160;可能容易混淆，BlockingObservable也有名叫last和lastOrDefault的操作符，它们会阻塞并返回值，不是立即返回一个Observable。
+        \n&#160;&#160;&#160;&#160;只发射最后一项数据，使用没有参数的last操作符。</string>
+
+    <string name="activity_category3_filtering_observables_4_skip">3.4 skip</string>
+    <string name="activity_category3_filtering_observables_4_skip_description">&#160;&#160;&#160;&#160;抑制Observable发射的前N项数据。
+        \n&#160;&#160;&#160;&#160;使用Skip操作符，你可以忽略Observable发射的前N项数据，只保留之后的数据。
+        \n&#160;&#160;&#160;&#160;skip的这个变体默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category3_filtering_observables_5_skip_last">3.5 skipLast</string>
+    <string name="activity_category3_filtering_observables_5_skip_last_description">&#160;&#160;&#160;&#160;抑制Observable发射的后N项数据。
+        \n&#160;&#160;&#160;&#160;使用SkipLast操作符修改原始Observable，你可以忽略Observable发射的后N项数据，只保留前面的数据。
+        \n&#160;&#160;&#160;&#160;使用SkipLast操作符，你可以忽略原始Observable发射的后N项数据，只保留之前的数据。注意：这个机制是这样实现的：延迟原始Observable发射的任何数据项，直到它发射了N项数据。
+        \n&#160;&#160;&#160;&#160;skipLast的这个变体默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category3_filtering_observables_6_take">3.6 take</string>
+    <string name="activity_category3_filtering_observables_6_take_description">&#160;&#160;&#160;&#160;只发射前面的N项数据。
+        \n&#160;&#160;&#160;&#160;使用Take操作符让你可以修改Observable的行为，只返回前面的N项数据，然后发射完成通知，忽略剩余的数据。
+        \n&#160;&#160;&#160;&#160;如果你对一个Observable使用take(n)（或它的同义词limit(n)）操作符，而那个Observable发射的数据少于N项，那么take操作生成的Observable不会抛异常或发射onError通知，在完成前它只会发射相同的少量数据。
+        \n&#160;&#160;&#160;&#160;take(int)默认不任何特定的调度器上执行。</string>
+
+    <string name="activity_category3_filtering_observables_7_first">3.7 first</string>
+    <string name="activity_category3_filtering_observables_7_first_description">&#160;&#160;&#160;&#160;只发射第一项（或者满足某个条件的第一项）数据。
+        \n&#160;&#160;&#160;&#160;如果你只对Observable发射的第一项数据，或者满足某个条件的第一项数据感兴趣，你可以使用First操作符。
+        \n&#160;&#160;&#160;&#160;在某些实现中，First没有实现为一个返回Observable的过滤操作符，而是实现为一个在当时就发射原始Observable指定数据项的阻塞函数。在这些实现中，如果你想要的是一个过滤操作符，最好使用Take(1)或者ElementAt(0)。
+        \n&#160;&#160;&#160;&#160;在一些实现中还有一个Single操作符。它的行为与First类似，但为了确保只发射单个值，它会等待原始Observable终止（否则，不是发射那个值，而是以一个错误通知终止）。你可以使用它从原始Observable获取第一项数据，而且也确保只发射一项数据。
+        \n&#160;&#160;&#160;&#160;在RxJava中，这个操作符被实现为first，firstOrDefault和takeFirst。
+        \n&#160;&#160;&#160;&#160;可能容易混淆，BlockingObservable也有名叫first和firstOrDefault的操作符，它们会阻塞并返回值，不是立即返回一个Observable。
+        \n&#160;&#160;&#160;&#160;还有几个其它的操作符执行类似的功能。</string>
+
+    <string name="activity_category3_filtering_observables_8_element_at">3.8 elementAt</string>
+    <string name="activity_category3_filtering_observables_8_element_at_description">&#160;&#160;&#160;&#160;只发射第N项数据。
+        \n&#160;&#160;&#160;&#160;ElementAt操作符获取原始Observable发射的数据序列指定索引位置的数据项，然后当做自己的唯一数据发射。
+        \n&#160;&#160;&#160;&#160;RxJava将这个操作符实现为elementAt，给它传递一个基于0的索引值，它会发射原始Observable数据序列对应索引位置的值，如果你传递给elementAt的值为5，那么它会发射第六项的数据。
+        \n&#160;&#160;&#160;&#160;如果你传递的是一个负数，或者原始Observable的数据项数小于index+1，将会抛出一个IndexOutOfBoundsException异常。</string>
+
+    <string name="activity_category3_filtering_observables_9_sample">3.9 sample</string>
+    <string name="activity_category3_filtering_observables_9_sample_description">&#160;&#160;&#160;&#160;定期发射Observable最近发射的数据项。
+        \n&#160;&#160;&#160;&#160;Sample操作符定时查看一个Observable，然后发射自上次采样以来它最近发射的数据。
+        \n&#160;&#160;&#160;&#160;在某些实现中，有一个ThrottleFirst操作符的功能类似，但不是发射采样期间的最近的数据，而是发射在那段时间内的第一项数据。
+        \n&#160;&#160;&#160;&#160;RxJava将这个操作符实现为sample和throttleLast。
+        \n&#160;&#160;&#160;&#160;注意：如果自上次采样以来，原始Observable没有发射任何数据，这个操作返回的Observable在那段时间内也不会发射任何数据。
+        \n&#160;&#160;&#160;&#160;sample(别名throttleLast)的一个变体按照你参数中指定的时间间隔定时采样（TimeUnit指定时间单位）。
+        \n&#160;&#160;&#160;&#160;sample的这个变体默认在computation调度器上执行，但是你可以使用第三个参数指定其它的调度器。</string>
+
+    <string name="activity_category3_filtering_observables_10_debounce">3.10 debounce</string>
+    <string name="activity_category3_filtering_observables_10_debounce_description">&#160;&#160;&#160;&#160;仅在过了一段指定的时间还没发射数据时才发射一个数据。
+        \n&#160;&#160;&#160;&#160;Debounce操作符会过滤掉发射速率过快的数据项。
+        \n&#160;&#160;&#160;&#160;RxJava将这个操作符实现为throttleWithTimeout和debounce。
+        \n&#160;&#160;&#160;&#160;注意：这个操作符会会接着最后一项数据发射原始Observable的onCompleted通知，即使这个通知发生在你指定的时间窗口内（从最后一项数据的发射算起）。也就是说，onCompleted通知不会触发限流。</string>
+
+    <string name="activity_category3_filtering_observables_11_distinct">3.11 distinct</string>
+    <string name="activity_category3_filtering_observables_11_distinct_description">&#160;&#160;&#160;&#160;抑制（过滤掉）重复的数据项。
+        \n&#160;&#160;&#160;&#160;Distinct的过滤规则是：只允许还没有发射过的数据项通过。
+        \n&#160;&#160;&#160;&#160;在某些实现中，有一些变体允许你调整判定两个数据不同(distinct)的标准。还有一些实现只比较一项数据和它的直接前驱，因此只会从序列中过滤掉连续重复的数据。</string>
+
+    <string name="activity_category3_filtering_observables_12_ignore_elements">3.12 ignoreElements</string>
+    <string name="activity_category3_filtering_observables_12_ignore_elements_description">&#160;&#160;&#160;&#160;不发射任何数据，只发射Observable的终止通知。
+        \n&#160;&#160;&#160;&#160;IgnoreElements操作符抑制原始Observable发射的所有数据，只允许它的终止通知（onError或onCompleted）通过。
+        \n&#160;&#160;&#160;&#160;如果你不关心一个Observable发射的数据，但是希望在它完成时或遇到错误终止时收到通知，你可以对Observable使用ignoreElements操作符，它会确保永远不会调用观察者的onNext()方法。
+        \n&#160;&#160;&#160;&#160;ignoreElements默认不在任何特定的调度器上执行。</string>
+    <!-- 3. 过滤操作 end -->
+
+    <!-- 4. 结合操作 start -->
+    <string name="activity_category4_combining_observables_1_start_with">4.1 startWith</string>
+    <string name="activity_category4_combining_observables_1_start_with_description">&#160;&#160;&#160;&#160;在数据序列的开头插入一条指定的项。
+        \n&#160;&#160;&#160;&#160;如果你想要一个Observable在发射数据之前先发射一个指定的数据序列，可以使用StartWith操作符。（如果你想一个Observable发射的数据末尾追加一个数据序列可以使用Concat操作符。）</string>
+
+    <string name="activity_category4_combining_observables_2_merge">4.2 merge</string>
+    <string name="activity_category4_combining_observables_2_merge_description">&#160;&#160;&#160;&#160;合并多个Observables的发射物。
+        \n&#160;&#160;&#160;&#160;使用Merge操作符你可以将多个Observables的输出合并，就好像它们是一个单个的Observable一样。
+        \n&#160;&#160;&#160;&#160;Merge可能会让合并的Observables发射的数据交错（有一个类似的操作符Concat不会让数据交错，它会按顺序一个接着一个发射多个Observables的发射物）。
+        \n&#160;&#160;&#160;&#160;正如图例上展示的，任何一个原始Observable的onError通知会被立即传递给观察者，而且会终止合并后的Observable。
+        \n&#160;&#160;&#160;&#160;在很多ReactiveX实现中还有一个叫MergeDelayError的操作符，它的行为有一点不同，它会保留onError通知直到合并后的Observable所有的数据发射完成，在那时它才会把onError传递给观察者。
+        \n&#160;&#160;&#160;&#160;除了传递多个Observable给merge，你还可以传递一个Observable列表List，数组，甚至是一个发射Observable序列的Observable，merge将合并它们的输出作为单个Observable的输出。
+        \n&#160;&#160;&#160;&#160;如果你传递一个发射Observables序列的Observable，你可以指定merge应该同时订阅的Observable的最大数量。一旦达到订阅数的限制，它将不再订阅原始Observable发射的任何其它Observable，直到某个已经订阅的Observable发射了onCompleted通知。
+        \n&#160;&#160;&#160;&#160;merge是静态方法，mergeWith是对象方法，举个例子，Observable.merge(odds,evens)等价于odds.mergeWith(evens)。
+        \n&#160;&#160;&#160;&#160;如果传递给merge的任何一个的Observable发射了onError通知终止了，merge操作符生成的Observable也会立即以onError通知终止。如果你想让它继续发射数据，在最后才报告错误，可以使用mergeDelayError。</string>
+
+    <string name="activity_category4_combining_observables_3_zip">4.3 zip</string>
+    <string name="activity_category4_combining_observables_3_zip_description">&#160;&#160;&#160;&#160;通过一个函数将多个Observables的发射物结合到一起，基于这个函数的结果为每个结合体发射单个数据项。
+        \n&#160;&#160;&#160;&#160;Zip操作符返回一个Obversable，它使用这个函数按顺序结合两个或多个Observables发射的数据项，然后它发射这个函数返回的结果。它按照严格的顺序应用这个函数。它只发射与发射数据项最少的那个Observable一样多的数据。
+        \n&#160;&#160;&#160;&#160;zip的最后一个参数接受每个Observable发射的一项数据，返回被压缩后的数据，它可以接受一到九个参数：一个Observable序列，或者一些发射Observable的Observables。</string>
+
+    <string name="activity_category4_combining_observables_4_and_then_when">4.4 and/then/when</string>
+    <string name="activity_category4_combining_observables_4_and_then_when_description">&#160;&#160;&#160;&#160;使用Pattern和Plan作为中介，将两个或多个Observable发射的数据集合并到一起。
+        \n&#160;&#160;&#160;&#160;And/Then/When操作符组合的行为类似于zip，但是它们使用一个中间数据结构。接受两个或多个Observable，一次一个将它们的发射物合并到Pattern对象，然后操作那个Pattern对象，变换为一个Plan。随后将这些Plan变换为Observable的发射物。
+        \n&#160;&#160;&#160;&#160;它们属于rxjava-joins模块，不是核心RxJava包的一部分。</string>
+
+    <string name="activity_category4_combining_observables_5_combine_latest">4.5 combineLatest</string>
+    <string name="activity_category4_combining_observables_5_combine_latest_description">&#160;&#160;&#160;&#160;当两个Observables中的任何一个发射了数据时，使用一个函数结合每个Observable发射的最近数据项，并且基于这个函数的结果发射数据。
+        \n&#160;&#160;&#160;&#160;CombineLatest操作符行为类似于zip，但是只有当原始的Observable中的每一个都发射了一条数据时zip才发射数据。CombineLatest则在原始的Observable中任意一个发射了数据时发射一条数据。当原始Observables的任何一个发射了一条数据时，CombineLatest使用一个函数结合它们最近发射的数据，然后发射这个函数的返回值。
+        \n&#160;&#160;&#160;&#160;RxJava将这个操作符实现为combineLatest，它接受二到九个Observable作为参数，或者单个Observables列表作为参数。它默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category4_combining_observables_6_join">4.6 join</string>
+    <string name="activity_category4_combining_observables_6_join_description">&#160;&#160;&#160;&#160;任何时候，只要在另一个Observable发射的数据定义的时间窗口内，这个Observable发射了一条数据，就结合两个Observable发射的数据。
+        \n&#160;&#160;&#160;&#160;Join操作符结合两个Observable发射的数据，基于时间窗口（你定义的针对每条数据特定的原则）选择待集合的数据项。你将这些时间窗口实现为一些Observables，它们的生命周期从任何一条Observable发射的每一条数据开始。当这个定义时间窗口的Observable发射了一条数据或者完成时，与这条数据关联的窗口也会关闭。只要这条数据的窗口是打开的，它将继续结合其它Observable发射的任何数据项。你定义一个用于结合数据的函数。
+        \n&#160;&#160;&#160;&#160;join默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category4_combining_observables_7_switch">4.7 switch</string>
+    <string name="activity_category4_combining_observables_7_switch_description">&#160;&#160;&#160;&#160;将一个发射多个Observables的Observable转换成另一个单独的Observable，后者发射那些Observables最近发射的数据项。
+        \n&#160;&#160;&#160;&#160;Switch订阅一个发射多个Observables的Observable。它每次观察那些Observables中的一个，Switch返回的这个Observable取消订阅前一个发射数据的Observable，开始发射最近的Observable发射的数据。注意：当原始Observable发射了一个新的Observable时（不是这个新的Observable发射了一条数据时），它将取消订阅之前的那个Observable。这意味着，在后来那个Observable产生之后到它开始发射数据之前的这段时间里，前一个Observable发射的数据将被丢弃（就像图例上的那个黄色圆圈一样）。
+        \n&#160;&#160;&#160;&#160;Java将这个操作符实现为switchOnNext。它默认不在任何特定的调度器上执行。</string>
+    <!-- 4. 结合操作 end -->
+
+    <!-- 5. 错误处理 start -->
+    <string name="activity_category5_error_handling_operators_1_1_on_error_return">5.1.1 onErrorReturn</string>
+    <string name="activity_category5_error_handling_operators_1_1_on_error_return_description">&#160;&#160;&#160;&#160;让Observable遇到错误时发射一个特殊的项并且正常终止。
+        \n&#160;&#160;&#160;&#160;onErrorReturn方法返回一个镜像原有Observable行为的新Observable，后者会忽略前者的onError调用，不会将错误传递给观察者，作为替代，它会发发射一个特殊的项并调用观察者的onCompleted方法。</string>
+
+    <string name="activity_category5_error_handling_operators_1_2_on_error_resume_next">5.1.2 onErrorResumeNext</string>
+    <string name="activity_category5_error_handling_operators_1_2_on_error_resume_next_description">&#160;&#160;&#160;&#160;让Observable在遇到错误时开始发射第二个Observable的数据序列。
+        \n&#160;&#160;&#160;&#160;onErrorResumeNext方法返回一个镜像原有Observable行为的新Observable，后者会忽略前者的onError调用，不会将错误传递给观察者，作为替代，它会开始镜像另一个，备用的Observable。</string>
+
+    <string name="activity_category5_error_handling_operators_1_3_on_exception_resume_next">5.1.3 onExceptionResumeNext</string>
+    <string name="activity_category5_error_handling_operators_1_3_on_exception_resume_next_description">&#160;&#160;&#160;&#160;让Observable在遇到错误时继续发射后面的数据项。
+        \n&#160;&#160;&#160;&#160;和onErrorResumeNext类似，onExceptionResumeNext方法返回一个镜像原有Observable行为的新Observable，也使用一个备用的Observable，不同的是，如果onError收到的Throwable不是一个Exception，它会将错误传递给观察者的onError方法，不会使用备用的Observable。</string>
+
+    <string name="activity_category5_error_handling_operators_2_retry">5.2 retry</string>
+    <string name="activity_category5_error_handling_operators_2_retry_description">&#160;&#160;&#160;&#160;如果原始Observable遇到错误，重新订阅它期望它能正常终止。
+        \n&#160;&#160;&#160;&#160;Retry操作符不会将原始Observable的onError通知传递给观察者，它会订阅这个Observable，再给它一次机会无错误地完成它的数据序列。Retry总是传递onNext通知给观察者，由于重新订阅，可能会造成数据项重复，如上图所示。
+        \n&#160;&#160;&#160;&#160;RxJava中的实现为retry和retryWhen。
+        \n&#160;&#160;&#160;&#160;无论收到多少次onError通知，无参数版本的retry都会继续订阅并发射原始Observable。
+        \n&#160;&#160;&#160;&#160;接受单个count参数的retry会最多重新订阅指定的次数，如果次数超了，它不会尝试再次订阅，它会把最新的一个onError通知传递给它的观察者。
+        \n&#160;&#160;&#160;&#160;还有一个版本的retry接受一个谓词函数作为参数，这个函数的两个参数是：重试次数和导致发射onError通知的Throwable。这个函数返回一个布尔值，如果返回true，retry应该再次订阅和镜像原始的Observable，如果返回false，retry会将最新的一个onError通知传递给它的观察者。
+        \n&#160;&#160;&#160;&#160;retry操作符默认在trampoline调度器上执行。</string>
+    <!-- 5. 错误处理 end -->
+
+    <!-- 6. 辅助操作 start -->
+    <string name="activity_category6_observable_utility_operators_1_materialize">6.1 materialize</string>
+    <string name="activity_category6_observable_utility_operators_1_materialize_description">&#160;&#160;&#160;&#160;Materialize将数据项和事件通知都当做数据项发射。
+        \n&#160;&#160;&#160;&#160;一个合法的有限的Obversable将调用它的观察者的onNext方法零次或多次，然后调用观察者的onCompleted或onError正好一次。Materialize操作符将这一系列调用，包括原来的onNext通知和终止通知onCompleted或onError都转换为一个Observable发射的数据序列。
+        \n&#160;&#160;&#160;&#160;RxJava的materialize将来自原始Observable的通知转换为Notification对象，然后它返回的Observable会发射这些数据。
+        \n&#160;&#160;&#160;&#160;materialize默认不在任何特定的调度器 (Scheduler) 上执行。</string>
+
+    <string name="activity_category6_observable_utility_operators_2_dematerialize">6.2 dematerialize</string>
+    <string name="activity_category6_observable_utility_operators_2_dematerialize_description">&#160;&#160;&#160;&#160;Dematerialize操作符是Materialize的逆向过程，它将Materialize转换的结果还原成它原本的形式。
+        \n&#160;&#160;&#160;&#160;dematerialize反转这个过程，将原始Observable发射的Notification对象还原成Observable的通知。
+        \n&#160;&#160;&#160;&#160;dematerialize默认不在任何特定的调度器 (Scheduler) 上执行。</string>
+
+    <string name="activity_category6_observable_utility_operators_3_timestamp">6.3 timestamp</string>
+    <string name="activity_category6_observable_utility_operators_3_timestamp_description">&#160;&#160;&#160;&#160;给Observable发射的数据项附加一个时间戳。
+        \n&#160;&#160;&#160;&#160;RxJava中的实现为timestamp，它将一个发射T类型数据的Observable转换为一个发射类型为Timestamped&lt;T&gt;的数据的Observable，每一项都包含数据的原始发射时间。
+        \n&#160;&#160;&#160;&#160;timestamp默认在immediate调度器上执行，但是可以通过参数指定其它的调度器。</string>
+
+    <string name="activity_category6_observable_utility_operators_4_serialize">6.4 serialize</string>
+    <string name="activity_category6_observable_utility_operators_4_serialize_description">&#160;&#160;&#160;&#160;给强制一个Observable连续调用并保证行为正确。
+        \n&#160;&#160;&#160;&#160;一个Observable可以异步调用它的观察者的方法，可能是从不同的线程调用。这可能会让Observable行为不正确，它可能会在某一个onNext调用之前尝试调用onCompleted或onError方法，或者从两个不同的线程同时调用onNext方法。使用Serialize操作符，你可以纠正这个Observable的行为，保证它的行为是正确的且是同步的。
+        \n&#160;&#160;&#160;&#160;RxJava中的实现是serialize，它默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category6_observable_utility_operators_5_observe_on">6.5 observeOn</string>
+    <string name="activity_category6_observable_utility_operators_5_observe_on_description">&#160;&#160;&#160;&#160;指定一个观察者在哪个调度器上观察这个Observable。
+        \n&#160;&#160;&#160;&#160;很多ReactiveX实现都使用调度器 "Scheduler"来管理多线程环境中Observable的转场。你可以使用ObserveOn操作符指定Observable在一个特定的调度器上发送通知给观察者 (调用观察者的onNext, onCompleted, onError方法)。
+        \n&#160;&#160;&#160;&#160;注意：当遇到一个异常时ObserveOn会立即向前传递这个onError终止通知，它不会等待慢速消费的Observable接受任何之前它已经收到但还没有发射的数据项。这可能意味着onError通知会跳到（并吞掉）原始Observable发射的数据项前面，正如图例上展示的。
+        \n&#160;&#160;&#160;&#160;SubscribeOn操作符的作用类似，但它是用于指定Observable本身在特定的调度器上执行，它同样会在那个调度器上给观察者发通知。
+        \n&#160;&#160;&#160;&#160;RxJava中，要指定Observable应该在哪个调度器上调用观察者的onNext, onCompleted, onError方法，你需要使用observeOn操作符，传递给它一个合适的Scheduler。</string>
+
+    <string name="activity_category6_observable_utility_operators_6_subscribe">6.6 subscribe</string>
+    <string name="activity_category6_observable_utility_operators_6_subscribe_description">&#160;&#160;&#160;&#160;操作来自Observable的发射物和通知。
+        \n&#160;&#160;&#160;&#160;Subscribe操作符是连接观察者和Observable的胶水。一个观察者要想看到Observable发射的数据项，或者想要从Observable获取错误和完成通知，它首先必须使用这个操作符订阅那个Observable。
+        \n&#160;&#160;&#160;&#160;Subscribe操作符的一般实现可能会接受一到三个方法（然后由观察者组合它们），或者接受一个实现了包含这三个方法的接口的对象（有时叫做Observer或Subscriber）：
+        \n&#160;&#160;&#160;&#160;onNext
+        \n&#160;&#160;&#160;&#160;每当Observable发射了一项数据它就会调用这个方法。这个方法的参数是这个Observable发射的数据项。
+        \n&#160;&#160;&#160;&#160;onError
+        \n&#160;&#160;&#160;&#160;Observable调用这个方法表示它无法生成期待的数据或者遇到了其它错误。这将停止Observable，它在这之后不会再调用onNext或onCompleted。onError方法的参数是导致这个错误的原因的一个表示（有时可能是一个Exception或Throwable对象，其它时候也可能是一个简单的字符串，取决于具体的实现）。
+        \n&#160;&#160;&#160;&#160;onCompleted
+        \n&#160;&#160;&#160;&#160;如果没有遇到任何错误，Observable在最后一次调用onCompleted之后会调用这个方法。
+        \n&#160;&#160;&#160;&#160;如果一个Observable直到有一个观察者订阅它才开始发射数据项，就称之为"冷"的Observable；如果一个Observable可能在任何时刻开始发射数据，就称之为"热"的Observable，一个订阅者可能从开始之后的某个时刻开始观察它发射的数据序列，它可能会错过在订阅之前发射的数据。
+        \n&#160;&#160;&#160;&#160;RxJava中的实现是subscribe方法。
+        \n&#160;&#160;&#160;&#160;如果你使用无参数的版本，它将触发对Observable的一个订阅，但是将忽略它的发射物和通知。这个操作会激活一个"冷"的Observable。
+        \n&#160;&#160;&#160;&#160;你也可以传递一到三个函数给它，它们会按下面的方法解释：
+        \n&#160;&#160;&#160;&#160;onNext
+        \n&#160;&#160;&#160;&#160;onNext和onError
+        \n&#160;&#160;&#160;&#160;onNext, onError和onCompleted
+        \n&#160;&#160;&#160;&#160;最后，你还可以传递一个Observer或Subscriber接口给它，Observer接口包含这三个以on开头的方法。Subscriber接口也实现了这三个方法，而且还添加了几个额外的方法，用于支持使用反压操作(reactive pull backpressure)，这让Subscriber可以在Observable完成前取消订阅。
+        \n&#160;&#160;&#160;&#160;subscribe方法返回一个实现了Subscription接口的对象。这个接口包含unsubscribe方法，任何时刻你都可以调用它来断开subscribe方法建立的Observable和观察者之间的订阅关系。</string>
+
+    <string name="activity_category6_observable_utility_operators_7_subscribe_on">6.7 subscribeOn</string>
+    <string name="activity_category6_observable_utility_operators_7_subscribe_on_description">&#160;&#160;&#160;&#160;指定Observable自身在哪个调度器上执行。
+        \n&#160;&#160;&#160;&#160;很多ReactiveX实现都使用调度器 "Scheduler"来管理多线程环境中Observable的转场。你可以使用SubscribeOn操作符指定Observable在一个特定的调度器上运转。
+        \n&#160;&#160;&#160;&#160;ObserveOn操作符的作用类似，但是功能很有限，它指示Observable在一个指定的调度器上给观察者发通知。</string>
+
+    <string name="activity_category6_observable_utility_operators_8_delay">6.8 delay</string>
+    <string name="activity_category6_observable_utility_operators_8_delay_description">&#160;&#160;&#160;&#160;延迟一段指定的时间再发射来自Observable的发射物。
+        \n&#160;&#160;&#160;&#160;Delay操作符让原始Observable在发射每项数据之前都暂停一段指定的时间段。效果是Observable发射的数据项在时间上向前整体平移了一个增量。
+        \n&#160;&#160;&#160;&#160;RxJava的实现是 delay和delaySubscription。
+        \n&#160;&#160;&#160;&#160;第一种delay接受一个定义时长的参数（包括数量和单位）。每当原始Observable发射一项数据，delay就启动一个定时器，当定时器过了给定的时间段时，delay返回的Observable发射相同的数据项。
+        \n&#160;&#160;&#160;&#160;注意：delay不会平移onError通知，它会立即将这个通知传递给订阅者，同时丢弃任何待发射的onNext通知。然而它会平移一个onCompleted通知。
+        \n&#160;&#160;&#160;&#160;delay默认在computation调度器上执行，你可以通过参数指定使用其它的调度器。</string>
+
+    <string name="activity_category6_observable_utility_operators_9_time_interval">6.9 timeInterval</string>
+    <string name="activity_category6_observable_utility_operators_9_time_interval_description">&#160;&#160;&#160;&#160;将一个发射数据的Observable转换为发射那些数据发射时间间隔的Observable。
+        \n&#160;&#160;&#160;&#160;TimeInterval操作符拦截原始Observable发射的数据项，替换为发射表示相邻发射物时间间隔的对象。
+        \n&#160;&#160;&#160;&#160;RxJava中的实现为timeInterval，这个操作符将原始Observable转换为另一个Obserervable，后者发射一个标志替换前者的数据项，这个标志表示前者的两个连续发射物之间流逝的时间长度。新的Observable的第一个发射物表示的是在观察者订阅原始Observable到原始Observable发射它的第一项数据之间流逝的时间长度。不存在与原始Observable发射最后一项数据和发射onCompleted通知之间时长对应的发射物。
+        \n&#160;&#160;&#160;&#160;timeInterval默认在immediate调度器上执行，你可以通过传参数修改。</string>
+
+    <string name="activity_category6_observable_utility_operators_10_timeout">6.10 timeout</string>
+    <string name="activity_category6_observable_utility_operators_10_timeout_description">&#160;&#160;&#160;&#160;对原始Observable的一个镜像，如果过了一个指定的时长仍没有发射数据，它会发一个错误通知。
+        \n&#160;&#160;&#160;&#160;如果原始Observable过了指定的一段时长没有发射任何数据，Timeout操作符会以一个onError通知终止这个Observable。
+        \n&#160;&#160;&#160;&#160;RxJava中的实现为timeout，但是有好几个变体。
+        \n&#160;&#160;&#160;&#160;第一个变体接受一个时长参数，每当原始Observable发射了一项数据，timeout就启动一个计时器，如果计时器超过了指定指定的时长而原始Observable没有发射另一项数据，timeout就抛出TimeoutException，以一个错误通知终止Observable。
+        \n&#160;&#160;&#160;&#160;这个timeout默认在computation调度器上执行，你可以通过参数指定其它的调度器。</string>
+
+    <string name="activity_category6_observable_utility_operators_11_using">6.11 using</string>
+    <string name="activity_category6_observable_utility_operators_11_using_description">&#160;&#160;&#160;&#160;创建一个只在Observable生命周期内存在的一次性资源。
+        \n&#160;&#160;&#160;&#160;Using操作符让你可以指示Observable创建一个只在它的生命周期内存在的资源，当Observable终止时这个资源会被自动释放。
+        \n&#160;&#160;&#160;&#160;using操作符接受三个参数：
+        \n&#160;&#160;&#160;&#160;1. 一个用户创建一次性资源的工厂函数
+        \n&#160;&#160;&#160;&#160;2. 一个用于创建Observable的工厂函数
+        \n&#160;&#160;&#160;&#160;3. 一个用于释放资源的函数
+        \n&#160;&#160;&#160;&#160;当一个观察者订阅using返回的Observable时，using将会使用Observable工厂函数创建观察者要观察的Observable，同时使用资源工厂函数创建一个你想要创建的资源。当观察者取消订阅这个Observable时，或者当观察者终止时（无论是正常终止还是因错误而终止），using使用第三个函数释放它创建的资源。
+        \n&#160;&#160;&#160;&#160;using默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category6_observable_utility_operators_12_do_on_each">6.12 doOnEach</string>
+    <string name="activity_category6_observable_utility_operators_12_do_on_each_description">&#160;&#160;&#160;&#160;注册一个动作作为原始Observable生命周期事件的一种占位符。
+        \n&#160;&#160;&#160;&#160;你可以注册回调，当Observable的某个事件发生时，Rx会在与Observable链关联的正常通知集合中调用它。Rx实现了多种操作符用于达到这个目的。
+        \n&#160;&#160;&#160;&#160;RxJava实现了很多Do操作符的变体。
+        \n&#160;&#160;&#160;&#160;doOnEach操作符让你可以注册一个回调，它产生的Observable每发射一项数据就会调用它一次。你可以以Action的形式传递参数给它，这个Action接受一个onNext的变体Notification作为它的唯一参数，你也可以传递一个Observable给doOnEach，这个Observable的onNext会被调用，就好像它订阅了原始的Observable一样。</string>
+    <!-- 6. 辅助操作 end -->
+
+    <!-- 7. 条件和布尔操作 start -->
+    <string name="activity_category7_conditional_and_boolean_operators_1_amb">7.1 amb</string>
+    <string name="activity_category7_conditional_and_boolean_operators_1_amb_description">&#160;&#160;&#160;&#160;给定两个或多个Observables，它只发射首先发射数据或通知的那个Observable的所有数据。
+        \n&#160;&#160;&#160;&#160;当你传递多个Observable给Amb时，它只发射其中一个Observable的数据和通知：首先发送通知给Amb的那个，不管发射的是一项数据还是一个onError或onCompleted通知。Amb将忽略和丢弃其它所有Observables的发射物。
+        \n&#160;&#160;&#160;&#160;RxJava的实现是amb，有一个类似的对象方法ambWith。例如，Observable.amb(o1,o2)和o1.ambWith(o2)是等价的。
+        \n&#160;&#160;&#160;&#160;这个操作符默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category7_conditional_and_boolean_operators_2_default_if_empty">7.2 defaultIfEmpty</string>
+    <string name="activity_category7_conditional_and_boolean_operators_2_default_if_empty_description">&#160;&#160;&#160;&#160;发射来自原始Observable的值，如果原始Observable没有发射任何值，就发射一个默认值。
+        \n&#160;&#160;&#160;&#160;DefaultIfEmpty简单的精确地发射原始Observable的值，如果原始Observable没有发射任何数据正常终止（以onCompletedd的形式），DefaultIfEmpty返回的Observable就发射一个你提供的默认值。
+        \n&#160;&#160;&#160;&#160;RxJava将这个操作符实现为defaultIfEmpty。它默认不在任何特定的调度器上执行。
+        \n&#160;&#160;&#160;&#160;还有一个新的操作符switchIfEmpty，不在RxJava 1.0.0版中，它和defaultIfEmtpy类似，不同的是，如果原始Observable没有发射数据，它发射一个备用Observable的发射物。</string>
+
+    <string name="activity_category7_conditional_and_boolean_operators_3_skip_until">7.3 skipUntil</string>
+    <string name="activity_category7_conditional_and_boolean_operators_3_skip_until_description">&#160;&#160;&#160;&#160;丢弃原始Observable发射的数据，直到第二个Observable发射了一项数据。
+        \n&#160;&#160;&#160;&#160;SkipUntil订阅原始的Observable，但是忽略它的发射物，直到第二个Observable发射了一项数据那一刻，它开始发射原始Observable。
+        \n&#160;&#160;&#160;&#160;RxJava中对应的是skipUntil，它默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category7_conditional_and_boolean_operators_4_skip_while">7.4 skipWhile</string>
+    <string name="activity_category7_conditional_and_boolean_operators_4_skip_while_description">&#160;&#160;&#160;&#160;丢弃Observable发射的数据，直到一个指定的条件不成立。
+        \n&#160;&#160;&#160;&#160;SkipWhile订阅原始的Observable，但是忽略它的发射物，直到你指定的某个条件变为false的那一刻，它开始发射原始Observable。
+        \n&#160;&#160;&#160;&#160;skipWhile默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category7_conditional_and_boolean_operators_5_take_until">7.5 takeUntil</string>
+    <string name="activity_category7_conditional_and_boolean_operators_5_take_until_description">&#160;&#160;&#160;&#160;当第二个Observable发射了一项数据或者终止时，丢弃原始Observable发射的任何数据。
+        \n&#160;&#160;&#160;&#160;TakeUntil订阅并开始发射原始Observable，它还监视你提供的第二个Observable。如果第二个Observable发射了一项数据或者发射了一个终止通知，TakeUntil返回的Observable会停止发射原始Observable并终止。
+        \n&#160;&#160;&#160;&#160;RxJava中的实现是takeUntil。注意：第二个Observable发射一项数据或一个onError通知或一个onCompleted通知都会导致takeUntil停止发射数据。
+        \n&#160;&#160;&#160;&#160;takeUntil默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category7_conditional_and_boolean_operators_6_take_while">7.6 TakeWhile</string>
+    <string name="activity_category7_conditional_and_boolean_operators_6_take_while_description">&#160;&#160;&#160;&#160;发射Observable发射的数据，直到一个指定的条件不成立。
+        \n&#160;&#160;&#160;&#160;TakeWhile发射原始Observable，直到你指定的某个条件不成立的那一刻，它停止发射原始Observable，并终止自己的Observable。
+        \n&#160;&#160;&#160;&#160;RxJava中的takeWhile操作符返回一个镜像原始Observable行为的Observable，直到某一项数据你指定的函数返回false那一刻，这个新的Observable发射onCompleted终止通知。
+        \n&#160;&#160;&#160;&#160;takeWhile默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category7_conditional_and_boolean_operators_7_all">7.7 all</string>
+    <string name="activity_category7_conditional_and_boolean_operators_7_all_description">&#160;&#160;&#160;&#160;判定是否Observable发射的所有数据都满足某个条件。
+        \n&#160;&#160;&#160;&#160;传递一个谓词函数给All操作符，这个函数接受原始Observable发射的数据，根据计算返回一个布尔值。All返回一个只发射一个单个布尔值的Observable，如果原始Observable正常终止并且每一项数据都满足条件，就返回true；如果原始Observable的任何一项数据不满足条件就返回False。
+        \n&#160;&#160;&#160;&#160;RxJava将这个操作符实现为all，它默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category7_conditional_and_boolean_operators_8_contains">7.8 contains</string>
+    <string name="activity_category7_conditional_and_boolean_operators_8_contains_description">&#160;&#160;&#160;&#160;判定一个Observable是否发射一个特定的值。
+        \n&#160;&#160;&#160;&#160;给Contains传一个指定的值，如果原始Observable发射了那个值，它返回的Observable将发射true，否则发射false。
+        \n&#160;&#160;&#160;&#160;contains默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category7_conditional_and_boolean_operators_9_sequence_equal">7.9 sequenceEqual</string>
+    <string name="activity_category7_conditional_and_boolean_operators_9_sequence_equal_description">&#160;&#160;&#160;&#160;判定两个Observables是否发射相同的数据序列。
+        \n&#160;&#160;&#160;&#160;传递两个Observable给SequenceEqual操作符，它会比较两个Observable的发射物，如果两个序列是相同的（相同的数据，相同的顺序，相同的终止状态），它就发射true，否则发射false。
+        \n&#160;&#160;&#160;&#160;它还有一个版本接受第三个参数，可以传递一个函数用于比较两个数据项是否相同。
+        \n&#160;&#160;&#160;&#160;这个操作符默认不在任何特定的调度器上执行。</string>
+    <!-- 7. 条件和布尔操作 end -->
+
+    <!-- 8. 算术和聚合操作 start -->
+    <string name="activity_category8_mathematical_and_aggregate_operators_1_average">8.1 average</string>
+    <string name="activity_category8_mathematical_and_aggregate_operators_1_average_description">&#160;&#160;&#160;&#160;计算原始Observable发射数字的平均值并发射它。
+        \n&#160;&#160;&#160;&#160;Average操作符操作符一个发射数字的Observable，并发射单个值：原始Observable发射的数字序列的平均值。
+        \n&#160;&#160;&#160;&#160;这个操作符不包含在RxJava核心模块中，它属于不同的rxjava-math模块。它被实现为四个操作符：averageDouble, averageFloat, averageInteger, averageLong。
+        \n&#160;&#160;&#160;&#160;如果原始Observable不发射任何数据，这个操作符会抛异常：IllegalArgumentException</string>
+
+    <string name="activity_category8_mathematical_and_aggregate_operators_2_max">8.2 max</string>
+    <string name="activity_category8_mathematical_and_aggregate_operators_2_max_description">&#160;&#160;&#160;&#160;发射原始Observable的最大值。
+        \n&#160;&#160;&#160;&#160;Max操作符操作一个发射数值的Observable并发射单个值：最大的那个值。
+        \n&#160;&#160;&#160;&#160;RxJava中，max属于rxjava-math模块。
+        \n&#160;&#160;&#160;&#160;max接受一个可选参数，用于比较两项数据的大小，如果最大值的数据超过一项，max会发射原始Observable最近发射的那一项。
+        \n&#160;&#160;&#160;&#160;maxBy类似于max，但是它发射的不是最大值，而是发射Key最大的项，Key由你指定的一个函数生成。</string>
+
+    <string name="activity_category8_mathematical_and_aggregate_operators_3_min">8.3 min</string>
+    <string name="activity_category8_mathematical_and_aggregate_operators_3_min_description">&#160;&#160;&#160;&#160;发射原始Observable的最小值。
+        \n&#160;&#160;&#160;&#160;Min操作符操作一个发射数值的Observable并发射单个值：最小的那个值。
+        \n&#160;&#160;&#160;&#160;RxJava中，min属于rxjava-math模块。
+        \n&#160;&#160;&#160;&#160;min接受一个可选参数，用于比较两项数据的大小，如果最小值的数据超过一项，min会发射原始Observable最近发射的那一项。
+        \n&#160;&#160;&#160;&#160;minBy类似于min，但是它发射的不是最小值，而是发射Key最小的项，Key由你指定的一个函数生成。</string>
+
+    <string name="activity_category8_mathematical_and_aggregate_operators_4_sum">8.4 sum</string>
+    <string name="activity_category8_mathematical_and_aggregate_operators_4_sum_description">&#160;&#160;&#160;&#160;计算Observable发射的数值的和并发射这个和。
+        \n&#160;&#160;&#160;&#160;Sum操作符操作一个发射数值的Observable，仅发射单个值：原始Observable所有数值的和。
+        \n&#160;&#160;&#160;&#160;RxJava的实现是sumDouble, sumFloat, sumInteger, sumLong，它们不是RxJava核心模块的一部分，属于rxjava-math模块。</string>
+
+    <string name="activity_category8_mathematical_and_aggregate_operators_5_concat">8.5 concat</string>
+    <string name="activity_category8_mathematical_and_aggregate_operators_5_concat_description">&#160;&#160;&#160;&#160;不交错的发射两个或多个Observable的发射物。
+        \n&#160;&#160;&#160;&#160;Concat操作符连接多个Observable的输出，就好像它们是一个Observable，第一个Observable发射的所有数据在第二个Observable发射的任何数据前面，以此类推。
+        \n&#160;&#160;&#160;&#160;直到前面一个Observable终止，Concat才会订阅额外的一个Observable。注意：因此，如果你尝试连接一个"热"Observable（这种Observable在创建后立即开始发射数据，即使没有订阅者），Concat将不会看到也不会发射它之前发射的任何数据。
+        \n&#160;&#160;&#160;&#160;在ReactiveX的某些实现中有一种ConcatMap操作符（名字可能叫concat_all, concat_map, concatMapObserver, for, forIn/for_in, mapcat, selectConcat或selectConcatObserver），他会变换原始Observable发射的数据到一个对应的Observable，然后再按观察和变换的顺序进行连接操作。
+        \n&#160;&#160;&#160;&#160;StartWith操作符类似于Concat，但是它是插入到前面，而不是追加那些Observable的数据到原始Observable发射的数据序列。
+        \n&#160;&#160;&#160;&#160;Merge操作符也差不多，它结合两个或多个Observable的发射物，但是数据可能交错，而Concat不会让多个Observable的发射物交错。</string>
+
+    <string name="activity_category8_mathematical_and_aggregate_operators_6_count">8.6 count</string>
+    <string name="activity_category8_mathematical_and_aggregate_operators_6_count_description">&#160;&#160;&#160;&#160;计算原始Observable发射物的数量，然后只发射这个值。
+        \n&#160;&#160;&#160;&#160;Count操作符将一个Observable转换成一个发射单个值的Observable，这个值表示原始Observable发射的数据的数量。
+        \n&#160;&#160;&#160;&#160;如果原始Observable发生错误终止，Count不发射数据而是直接传递错误通知。如果原始Observable永远不终止，Count既不会发射数据也不会终止。
+        \n&#160;&#160;&#160;&#160;RxJava的实现是count和countLong。</string>
+
+    <string name="activity_category8_mathematical_and_aggregate_operators_7_reduce">8.7 reduce</string>
+    <string name="activity_category8_mathematical_and_aggregate_operators_7_reduce_description">&#160;&#160;&#160;&#160;按顺序对Observable发射的每项数据应用一个函数并发射最终的值。
+        \n&#160;&#160;&#160;&#160;Reduce操作符对原始Observable发射数据的第一项应用一个函数，然后再将这个函数的返回值与第二项数据一起传递给函数，以此类推，持续这个过程知道原始Observable发射它的最后一项数据并终止，此时Reduce返回的Observable发射这个函数返回的最终值。
+        \n&#160;&#160;&#160;&#160;在其它场景中，这种操作有时被称为累积，聚集，压缩，折叠，注射等。
+        \n&#160;&#160;&#160;&#160;注意如果原始Observable没有发射任何数据，reduce抛出异常IllegalArgumentException。
+        \n&#160;&#160;&#160;&#160;reduce默认不在任何特定的调度器上执行。</string>
+    <!-- 8. 算术和聚合操作 end -->
+
+    <!-- 9. 反压操作 start -->
+    <string name="activity_category9_backpressure_operators_1_on_backpressure_buffer">9.1 onBackpressureBuffer</string>
+    <string name="activity_category9_backpressure_operators_1_on_backpressure_buffer_description">&#160;&#160;&#160;&#160;onBackpressureBuffer 会缓存所有当前无法消费的数据，直到 Observer 可以处理为止。
+        \n&#160;&#160;&#160;&#160;你可以指定缓冲的数量，如果缓冲满了则会导致数据流失败。</string>
+
+    <string name="activity_category9_backpressure_operators_2_on_backpressure_drop">9.2 onBackpressureDrop</string>
+    <string name="activity_category9_backpressure_operators_2_on_backpressure_drop_description">&#160;&#160;&#160;&#160;如果消费者无法处理数据，则 onBackpressureDrop 就把该数据丢弃了。</string>
+
+    <string name="activity_category9_backpressure_operators_3_on_backpressure_latest">9.3 onBackpressureLatest</string>
+    <string name="activity_category9_backpressure_operators_3_on_backpressure_latest_description">&#160;&#160;&#160;&#160;当Observable发出的元素的速度比订阅者消化得要快,订阅者会接收Observable最新发出的item进行处理。</string>
+    <!-- 9. 反压操作 end -->
+
+    <!-- 10. 连接操作 start -->
+    <string name="activity_category10_connectable_observable_operators_1_connect">10.1 connect</string>
+    <string name="activity_category10_connectable_observable_operators_1_connect_description">&#160;&#160;&#160;&#160;让一个可连接的Observable开始发射数据给订阅者。
+        \n&#160;&#160;&#160;&#160;可连接的Observable (connectable Observable)与普通的Observable差不多，不过它并不会在被订阅时开始发射数据，而是直到使用了Connect操作符时才会开始。用这个方法，你可以等待所有的观察者都订阅了Observable之后再开始发射数据。
+        \n&#160;&#160;&#160;&#160;RxJava中connect是ConnectableObservable接口的一个方法，使用publish操作符可以将一个普通的Observable转换为一个ConnectableObservable。
+        \n&#160;&#160;&#160;&#160;调用ConnectableObservable的connect方法会让它后面的Observable开始给发射数据给订阅者。
+        \n&#160;&#160;&#160;&#160;connect方法返回一个Subscription对象，可以调用它的unsubscribe方法让Observable停止发射数据给观察者。
+        \n&#160;&#160;&#160;&#160;即使没有任何订阅者订阅它，你也可以使用connect方法让一个Observable开始发射数据（或者开始生成待发射的数据）。这样，你可以将一个"冷"的Observable变为"热"的。</string>
+
+    <string name="activity_category10_connectable_observable_operators_2_publish">10.2 publish</string>
+    <string name="activity_category10_connectable_observable_operators_2_publish_description">&#160;&#160;&#160;&#160;将普通的Observable转换为可连接的Observable。
+        \n&#160;&#160;&#160;&#160;可连接的Observable (connectable Observable)与普通的Observable差不多，不过它并不会在被订阅时开始发射数据，而是直到使用了Connect操作符时才会开始。用这种方法，你可以在任何时候让一个Observable开始发射数据。
+        \n&#160;&#160;&#160;&#160;有一个变体接受一个函数作为参数。这个函数用原始Observable发射的数据作为参数，产生一个新的数据作为ConnectableObservable给发射，替换原位置的数据项。实质是在签名的基础上添加一个Map操作。</string>
+
+    <string name="activity_category10_connectable_observable_operators_3_replay">10.3 replay</string>
+    <string name="activity_category10_connectable_observable_operators_3_replay_description">&#160;&#160;&#160;&#160;保证所有的观察者收到相同的数据序列，即使它们在Observable开始发射数据之后才订阅。
+        \n&#160;&#160;&#160;&#160;可连接的Observable (connectable Observable)与普通的Observable差不多，不过它并不会在被订阅时开始发射数据，而是直到使用了Connect操作符时才会开始。用这种方法，你可以在任何时候让一个Observable开始发射数据。
+        \n&#160;&#160;&#160;&#160;如果在将一个Observable转换为可连接的Observable之前对它使用Replay操作符，产生的这个可连接Observable将总是发射完整的数据序列给任何未来的观察者，即使那些观察者在这个Observable开始给其它观察者发射数据之后才订阅。
+        \n&#160;&#160;&#160;&#160;Replay操作符返回一个Connectable Observable 对象并且可以缓存其发射过的数据，这样即使有订阅者在其发射数据之后进行订阅也能收到其之前发射过的数据。不过使用Replay操作符我们最好还是限定其缓存的大小，否则缓存的数据太多了可会占用很大的一块内存。对缓存的控制可以从空间和时间两个方面来实现。</string>
+
+    <string name="activity_category10_connectable_observable_operators_4_ref_count">10.4 refCount</string>
+    <string name="activity_category10_connectable_observable_operators_4_ref_count_description">&#160;&#160;&#160;&#160;让一个可连接的Observable行为像普通的Observable。
+        \n&#160;&#160;&#160;&#160;可连接的Observable (connectable Observable)与普通的Observable差不多，不过它并不会在被订阅时开始发射数据，而是直到使用了Connect操作符时才会开始。用这种方法，你可以在任何时候让一个Observable开始发射数据。
+        \n&#160;&#160;&#160;&#160;RefCount操作符把从一个可连接的Observable连接和断开的过程自动化了。它操作一个可连接的Observable，返回一个普通的Observable。当第一个订阅者订阅这个Observable时，RefCount连接到下层的可连接Observable。RefCount跟踪有多少个观察者订阅它，直到最后一个观察者完成才断开与下层可连接Observable的连接。</string>
+    <!-- 10. 连接操作 end -->
+
+    <!-- 11. 转换操作 start -->
+    <string name="activity_category11_operators_to_convert_observables_1_get_iterator">11.1 getIterator</string>
+    <string name="activity_category11_operators_to_convert_observables_1_get_iterator_description">&#160;&#160;&#160;&#160;这个操作符将Observable转换为一个Iterator，你可以通过它迭代原始Observable发射的数据集。
+        \n&#160;&#160;&#160;&#160;getIterator操作符只能用于BlockingObservable的子类，要使用它，你首先必须把原始的Observable转换为一个BlockingObservable。可以使用这两个操作符：BlockingObservable.from或the Observable.toBlocking。</string>
+
+    <string name="activity_category11_operators_to_convert_observables_2_to_future">11.2 toFuture</string>
+    <string name="activity_category11_operators_to_convert_observables_2_to_future_description">&#160;&#160;&#160;&#160;这个操作符将Observable转换为一个返回单个数据项的Future。
+        \n&#160;&#160;&#160;&#160;toFuture操作符也是只能用于BlockingObservable。这个操作符将Observable转换为一个返回单个数据项的Future，如果原始Observable发射多个数据项，Future会收到一个IllegalArgumentException；如果原始Observable没有发射任何数据，Future会收到一个NoSuchElementException。
+        \n&#160;&#160;&#160;&#160;如果你想将发射多个数据项的Observable转换为Future，可以这样用：myObservable.toList().toBlocking().toFuture()。</string>
+
+    <string name="activity_category11_operators_to_convert_observables_3_to_iterable">11.3 toIterable</string>
+    <string name="activity_category11_operators_to_convert_observables_3_to_iterable_description">&#160;&#160;&#160;&#160;这个操作符将Observable转换为一个Iterable，你可以通过它迭代原始Observable发射的数据集。</string>
+
+    <string name="activity_category11_operators_to_convert_observables_4_to_list">11.4 toList</string>
+    <string name="activity_category11_operators_to_convert_observables_4_to_list_description">&#160;&#160;&#160;&#160;让Observable将多项数据组合成一个List，然后调用一次onNext方法传递整个列表。
+        \n&#160;&#160;&#160;&#160;通常，发射多项数据的Observable会为每一项数据调用onNext方法。你可以用toList操作符改变这个行为，让Observable将多项数据组合成一个List，然后调用一次onNext方法传递整个列表。
+        \n&#160;&#160;&#160;&#160;如果原始Observable没有发射任何数据就调用了onCompleted，toList返回的Observable会在调用onCompleted之前发射一个空列表。如果原始Observable调用了onError，toList返回的Observable会立即调用它的观察者的onError方法。
+        \n&#160;&#160;&#160;&#160;toList默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category11_operators_to_convert_observables_5_to_map">11.5 toMap</string>
+    <string name="activity_category11_operators_to_convert_observables_5_to_map_description">&#160;&#160;&#160;&#160;toMap收集原始Observable发射的所有数据项到一个Map（默认是HashMap）然后发射这个Map。
+        \n&#160;&#160;&#160;&#160;你可以提供一个用于生成Map的Key的函数，还可以提供一个函数转换数据项到Map存储的值（默认数据项本身就是值）。
+        \n&#160;&#160;&#160;&#160;toMap默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category11_operators_to_convert_observables_6_to_multi_map">11.6 toMultiMap</string>
+    <string name="activity_category11_operators_to_convert_observables_6_to_multi_map_description">&#160;&#160;&#160;&#160;toMultiMap类似于toMap，不同的是，它生成的这个Map同时还是一个ArrayList（默认是这样，你可以传递一个可选的工厂方法修改这个行为）。
+        \n&#160;&#160;&#160;&#160;toMultiMap默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category11_operators_to_convert_observables_7_to_sorted_list">11.7 toSortedList</string>
+    <string name="activity_category11_operators_to_convert_observables_7_to_sorted_list_description">&#160;&#160;&#160;&#160;toSortedList类似于toList，不同的是，它会对产生的列表排序，默认是自然升序，如果发射的数据项没有实现Comparable接口，会抛出一个异常。
+        \n&#160;&#160;&#160;&#160;然而，你也可以传递一个函数作为用于比较两个数据项，这是toSortedList不会使用Comparable接口。
+        \n&#160;&#160;&#160;&#160;toSortedList默认不在任何特定的调度器上执行。</string>
+
+    <string name="activity_category11_operators_to_convert_observables_8_nest">11.8 nest</string>
+    <string name="activity_category11_operators_to_convert_observables_8_nest_description">&#160;&#160;&#160;&#160;将一个Observable转换为一个发射这个Observable的Observable。
+        \n&#160;&#160;&#160;&#160;当和 嵌套的 Observable 打交道的时候，就要使用 nest 函数了。nest 函数把一个普通的非 嵌套 Observable 变为一个嵌套的 Observable。 nest 把一个源 Observable 变为一个嵌套的 Observable 发射出去就结束了。</string>
+    <!-- 11. 转换操作 end -->
 </resources>

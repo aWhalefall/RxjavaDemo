@@ -1,0 +1,165 @@
+package com.nuoyuan.rxdemo.base;
+
+import android.os.Bundle;
+import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.nuoyuan.rxdemo.R;
+import com.nuoyuan.rxdemo.util.DensityUtils;
+import com.nuoyuan.rxdemo.util.SpannableUtil;
+import com.nuoyuan.rxdemo.util.StringBufferUtil;
+import com.nuoyuan.rxdemo.util.ViewUtil;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+
+/**
+ * Created by weichyang on 2017/4/21.
+ */
+
+public abstract class SampleTempActivity extends BaseActivity {
+
+
+    private int DEFAULT_IMAGE_HEIGHT = 120;
+
+    private FloatingActionButton fab;
+
+    private TextView tvDescription; // 描述
+    private ImageView ivGraph;      // 示意图
+
+    private TextView tvSampleCode;
+    private TextView tvOutput;
+    private CardView cvOutput;
+
+    private StringBuffer outputStringBuffer = new StringBuffer();
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_base_operator_sample);
+
+        initFloatingActionButton();
+
+        initView();
+
+        initData();
+    }
+
+    private void initFloatingActionButton() {
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        fab.setVisibility(View.VISIBLE);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                runSampleCode();
+
+                showOutputInScreen();
+            }
+        });
+    }
+
+    private void initView(){
+        tvDescription = (TextView) findViewById(R.id.tv_description);
+        ivGraph = (ImageView) findViewById(R.id.iv_graph);
+
+        tvSampleCode = (TextView) findViewById(R.id.tv_sample_code);
+
+        tvOutput = (TextView) findViewById(R.id.tv_output);
+
+        cvOutput = (CardView) findViewById(R.id.cv_output);
+    }
+
+    protected void initData() {
+        tvDescription.setText(getDescription());
+
+        ivGraph.setImageResource(getImageResourceId());
+        DensityUtils.changeH(ivGraph, DensityUtils.dp2px(this, setImageHeight()));
+
+        tvSampleCode.setText(getSampleCode());
+
+        for (int i = 0; i < getOperatorNames().length; i++) {
+            int startIndex = getSampleCode().indexOf(getOperatorNames()[i] + "(");
+            int endIndex = startIndex + getOperatorNames()[i].length();
+
+            try {
+                SpannableUtil.setMethodNameRed(tvSampleCode,
+                        startIndex,
+                        endIndex);
+            } catch (IndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
+        }
+
+//        int startIndex = getSampleCode().indexOf(getOperatorName() + "(");
+//        int endIndex = startIndex + getOperatorName().length();
+//
+//        try {
+//            SpannableUtil.setMethodNameRed(tvSampleCode,
+//                    startIndex,
+//                    endIndex);
+//        } catch (IndexOutOfBoundsException e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    protected void showOutputInScreen() {
+        final List<String> outputList = getOutputList();
+
+        ViewUtil.hide(cvOutput);
+
+        StringBufferUtil.clear(outputStringBuffer);
+
+        Observable
+                .interval(500, TimeUnit.MILLISECONDS)
+                .take(outputList.size())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+                        ViewUtil.show(cvOutput);
+
+                        outputStringBuffer.append(outputList.get(aLong.intValue()));
+                        tvOutput.setText(outputStringBuffer);
+                    }
+                });
+    }
+
+    protected int setImageHeight() {
+        return DEFAULT_IMAGE_HEIGHT;
+    }
+
+    protected String getOperatorName() {
+        return "";
+    }
+
+    protected String[] getOperatorNames() {
+        return new String[]{getOperatorName()};
+    }
+
+    protected abstract String getDescription();
+
+    protected abstract int getImageResourceId();
+
+    protected abstract void runSampleCode();
+
+    protected abstract String getSampleCode();
+
+    protected abstract List<String> getOutputList();
+}

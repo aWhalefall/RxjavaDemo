@@ -1,15 +1,18 @@
-package com.nuoyuan.rxdemo;
+package com.nuoyuan.rxdemo.transportcontrol;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import java.util.List;
+import com.nuoyuan.rxdemo.R;
+
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by weichyang on 2017/4/19.
@@ -40,16 +43,16 @@ public class RxjavaTransport extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rxjava_transport);
 
-//        getObservable().buffer(3)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(getBufferedDisposableObserver());
+        getObservable().buffer(3)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getBufferedDisposableObserver());
 
-        Observable<Integer> burstyMulticast = getObservable().publish().refCount();
-// burstyDebounced will be our buffer closing selector:
-        Observable<Integer> burstyDebounced = burstyMulticast.debounce(10, TimeUnit.MILLISECONDS);
-// and this, finally, is the Observable of buffers we're interested in:
-        Observable<List<Integer>> burstyBuffered = burstyMulticast.buffer(burstyDebounced);
+
+        getObservable().buffer(3, TimeUnit.SECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(getBufferedDisposableObserver());
 
     }
 
