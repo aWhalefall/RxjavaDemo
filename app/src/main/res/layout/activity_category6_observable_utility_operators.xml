@@ -16,77 +16,84 @@
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="jumpToCreatingObservablesActivity"
-            android:text="@string/activity_main_1_creating_observables" />
+            android:onClick="jumpToCategory6Operator1MaterializeActivity"
+            android:text="@string/activity_category6_observable_utility_operators_1_materialize" />
 
         <Button
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="jumpToTransformingObservablesActivity"
-            android:text="@string/activity_main_2_transforming_observables" />
+            android:onClick="jumpToCategory6Operator2DematerializeActivity"
+            android:text="@string/activity_category6_observable_utility_operators_2_dematerialize" />
 
         <Button
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="jumpToFilteringObservablesActivity"
-            android:text="@string/activity_main_3_filtering_observables" />
+            android:onClick="jumpToCategory6Operator3TimestampActivity"
+            android:text="@string/activity_category6_observable_utility_operators_3_timestamp" />
 
         <Button
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="jumpToCombiningObservablesActivity"
-            android:text="@string/activity_main_4_combining_observables" />
+            android:onClick="jumpToCategory6Operator4SerializeActivity"
+            android:text="@string/activity_category6_observable_utility_operators_4_serialize" />
 
         <Button
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="jumpToErrorHandlingOperatorsActivity"
-            android:text="@string/activity_main_5_error_handling_operators" />
+            android:onClick="jumpToCategory6Operator5ObserveOnActivity"
+            android:text="@string/activity_category6_observable_utility_operators_5_observe_on" />
 
         <Button
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="jumpToObservableUtilityOperatorsActivity"
-            android:text="@string/activity_main_6_observable_utility_operators" />
+            android:onClick="jumpToCategory6Operator6SubscribeActivity"
+            android:text="@string/activity_category6_observable_utility_operators_6_subscribe" />
 
         <Button
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="jumpToConditionalAndBooleanOperatorsActivity"
-            android:text="@string/activity_main_7_conditional_and_boolean_operators" />
+            android:onClick="jumpToCategory6Operator7SubscribeOnActivity"
+            android:text="@string/activity_category6_observable_utility_operators_7_subscribe_on" />
 
         <Button
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="jumpToMathematicalAndAggregateOperatorsActivity"
-            android:text="@string/activity_main_8_mathematical_and_aggregate_operators" />
+            android:onClick="jumpToCategory6Operator8DelayActivity"
+            android:text="@string/activity_category6_observable_utility_operators_8_delay" />
 
         <Button
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="jumpToBackpressureOperatorsActivity"
-            android:text="@string/activity_main_9_backpressure_operators" />
+            android:onClick="jumpToCategory6Operator9TimeIntervalActivity"
+            android:text="@string/activity_category6_observable_utility_operators_9_time_interval" />
 
         <Button
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="jumpToConnectableObservableOperatorsActivity"
-            android:text="@string/activity_main_10_connectable_observable_operators" />
+            android:onClick="jumpToCategory6Operator10TimeoutActivity"
+            android:text="@string/activity_category6_observable_utility_operators_10_timeout" />
 
         <Button
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="jumpToOperatorsToConvertObservablesActivity"
-            android:text="@string/activity_main_11_operators_to_convert_observables" />
+            android:onClick="jumpToCategory6Operator11UsingActivity"
+            android:text="@string/activity_category6_observable_utility_operators_11_using" />
+
+        <Button
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="jumpToCategory6Operator12DoActivity"
+            android:text="@string/activity_category6_observable_utility_operators_12_do_on_each" />
     </LinearLayout>
 </ScrollView>

@@ -12,13 +12,62 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".transportcontrol.FlatMapTransportActivity"/>
-        <activity android:name=".transportcontrol.RxjavaTransport"/>
-        <activity android:name=".transportcontrol.Category2Operator3ScanActivity"/>
+        <activity android:name=".transportcontrol.FlatMapTransportActivity" />
+        <activity android:name=".transportcontrol.RxjavaTransport" />
+        <activity android:name=".transportcontrol.Category2Operator3ScanActivity" />
+        <!--异常操作符号-->
+        <activity android:name=".category5_error_handling_operators.Category5_ErrorHandlingOperatorsActivity" />
+        <activity android:name=".category5_error_handling_operators.Category5Operator1_1OnErrorReturnActivity" />
+        <activity android:name=".category5_error_handling_operators.Category5Operator1_2OnErrorResumeNextActivity" />
+        <activity android:name=".category5_error_handling_operators.Category5Operator1_3OnExceptionResumeNextActivity" />
+        <activity android:name=".category5_error_handling_operators.Category5Operator2RetryActivity" />
+
+
+        <!-- 7. 条件和布尔操作 start -->
+        <activity
+            android:name=".category7_conditional_and_boolean_operators.Category7_ConditionalAndBooleanOperatorsActivity"
+            android:label="@string/activity_main_7_conditional_and_boolean_operators"></activity>
+
+        <activity
+            android:name=".category7_conditional_and_boolean_operators.Category7Operator1AmbActivity"
+            android:label="@string/activity_category7_conditional_and_boolean_operators_1_amb"></activity>
+
+        <activity
+            android:name=".category7_conditional_and_boolean_operators.Category7Operator2DefaultIfEmptyActivity"
+            android:label="@string/activity_category7_conditional_and_boolean_operators_2_default_if_empty"></activity>
+
+        <activity
+            android:name=".category7_conditional_and_boolean_operators.Category7Operator3SkipUntilActivity"
+            android:label="@string/activity_category7_conditional_and_boolean_operators_3_skip_until"></activity>
+
+        <activity
+            android:name=".category7_conditional_and_boolean_operators.Category7Operator4SkipWhileActivity"
+            android:label="@string/activity_category7_conditional_and_boolean_operators_4_skip_while"></activity>
+
+        <activity
+            android:name=".category7_conditional_and_boolean_operators.Category7Operator5TakeUntilActivity"
+            android:label="@string/activity_category7_conditional_and_boolean_operators_5_take_until"></activity>
+
+        <activity
+            android:name=".category7_conditional_and_boolean_operators.Category7Operator6TakeWhileActivity"
+            android:label="@string/activity_category7_conditional_and_boolean_operators_6_take_while"></activity>
+
+        <activity
+            android:name=".category7_conditional_and_boolean_operators.Category7Operator7AllActivity"
+            android:label="@string/activity_category7_conditional_and_boolean_operators_7_all"></activity>
+
+        <activity
+            android:name=".category7_conditional_and_boolean_operators.Category7Operator8ContainsActivity"
+            android:label="@string/activity_category7_conditional_and_boolean_operators_8_contains"></activity>
+
+        <activity
+            android:name=".category7_conditional_and_boolean_operators.Category7Operator9SequenceEqualActivity"
+            android:label="@string/activity_category7_conditional_and_boolean_operators_9_sequence_equal"></activity>
+        <!-- 7. 条件和布尔操作 end -->
+
     </application>
 
 </manifest>
