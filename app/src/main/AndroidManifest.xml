@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
 
-        <!--创建操作-->
+        <!-- 1 创建操作-->
         <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1_CreatingObservablesActivity" />
         <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator1CreateActivity" />
         <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator2DeferActivity" />
@@ -85,6 +85,33 @@
             android:label="@string/activity_category7_conditional_and_boolean_operators_9_sequence_equal"></activity>
         <!-- 7. 条件和布尔操作 end -->
 
+        <!--9 背压操作-->
+        <activity android:name="com.nuoyuan.rxdemo.category9_backpressure_operators.Category9_BackpressureOperatorsActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category9_backpressure_operators.Category9Operator1OnBackpressureBufferActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category9_backpressure_operators.Category9Operator2OnBackpressureDropActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category9_backpressure_operators.Category9Operator3OnBackpressureLatestActivity" />
+        <!--连接操作-->
+
+        <activity android:name=".category10_connectable_observable_operators.Category10_ConnectableObservableOperatorsActivity" />
+        <activity android:name=".category10_connectable_observable_operators.Category10Operator2PublishActivity" />
+        <activity android:name=".category10_connectable_observable_operators.Category10Operator3ReplayActivity" />
+        <activity android:name=".category10_connectable_observable_operators.Category10Operator4RefCountActivity" />
+        <activity android:name=".category10_connectable_observable_operators.Category10Operator1ConnectActivity" />
+
+
+        <!--转换-->
+
+        <activity android:name=".category11_operators_to_convert_observables.Category11_OperatorsToConvertObservablesActivity"/>
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator1GetIteratorActivity"/>
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator2ToFutureActivity"/>
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator3ToIterableActivity"/>
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator4ToListActivity"/>
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator5ToMapActivity"/>
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator6ToMultiMapActivity"/>
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator7ToSortedListActivity"/>
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator8NestActivity"/>
+
     </application>
+
 
 </manifest>

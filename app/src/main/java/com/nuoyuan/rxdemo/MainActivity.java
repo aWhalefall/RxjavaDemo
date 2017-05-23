@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.nuoyuan.rxdemo.category10_connectable_observable_operators.Category10_ConnectableObservableOperatorsActivity;
+import com.nuoyuan.rxdemo.category11_operators_to_convert_observables.Category11_OperatorsToConvertObservablesActivity;
 import com.nuoyuan.rxdemo.category1_creating_observables.Category1_CreatingObservablesActivity;
 import com.nuoyuan.rxdemo.category5_error_handling_operators.Category5_ErrorHandlingOperatorsActivity;
 import com.nuoyuan.rxdemo.category7_conditional_and_boolean_operators.Category7_ConditionalAndBooleanOperatorsActivity;
+import com.nuoyuan.rxdemo.category9_backpressure_operators.Category9_BackpressureOperatorsActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void jumpToCombiningObservablesActivity(View view) {
-        //   startActivity(new Intent(MainActivity.this, Category4_CombiningObservablesActivity.class));
+//        startActivity(new Intent(MainActivity.this, Category11_OperatorsToConvertObservablesActivity.class));
     }
 
     /**
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void jumpToBackpressureOperatorsActivity(View view) {
-        //   startActivity(new Intent(MainActivity.this, Category9_BackpressureOperatorsActivity.class));
+        startActivity(new Intent(MainActivity.this, Category9_BackpressureOperatorsActivity.class));
     }
 
     /**
@@ -104,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void jumpToConnectableObservableOperatorsActivity(View view) {
-        //    startActivity(new Intent(MainActivity.this, Category10_ConnectableObservableOperatorsActivity.class));
+        startActivity(new Intent(MainActivity.this, Category10_ConnectableObservableOperatorsActivity.class));
     }
 
     /**
@@ -113,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void jumpToOperatorsToConvertObservablesActivity(View view) {
-        //   startActivity(new Intent(MainActivity.this, Category11_OperatorsToConvertObservablesActivity.class));
+        startActivity(new Intent(MainActivity.this, Category11_OperatorsToConvertObservablesActivity.class));
     }
 
 }
