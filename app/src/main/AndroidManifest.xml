@@ -31,6 +31,41 @@
         <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator9StartActivity" />
         <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator10TimerActivity" />
 
+        <!--2 变换-->
+        <activity android:name=".category2_transforming_observables.Category2_TransformingObservablesActivity" />
+        <activity android:name=".category2_transforming_observables.Category2Operator1MapActivity" />
+        <activity android:name=".category2_transforming_observables.Category2Operator2FlatMapActivity" />
+        <activity android:name=".category2_transforming_observables.Category2Operator3ScanActivity" />
+        <activity android:name=".category2_transforming_observables.Category2Operator4GroupByActivity" />
+        <activity android:name=".category2_transforming_observables.Category2Operator5BufferActivity" />
+        <activity android:name=".category2_transforming_observables.Category2Operator6WindowActivity" />
+        <!--end-->
+
+        <!--过滤-->
+        <activity android:name=".category3_filtering_observables.Category3_FilteringObservablesActivity"/>
+        <activity android:name=".category3_filtering_observables.Category3Operator1FilterActivity"/>
+        <activity android:name=".category3_filtering_observables.Category3Operator2TakeLastActivity"/>
+        <activity android:name=".category3_filtering_observables.Category3Operator3LastActivity"/>
+        <activity android:name=".category3_filtering_observables.Category3Operator4SkipActivity"/>
+       <activity android:name=".category3_filtering_observables.Category3Operator5SkipLastActivity"/>
+        <activity android:name=".category3_filtering_observables.Category3Operator6TakeActivity"/>
+        <activity android:name=".category3_filtering_observables.Category3Operator7FirstActivity"/>
+        <activity android:name=".category3_filtering_observables.Category3Operator8ElementAtActivity"/>
+        <activity android:name=".category3_filtering_observables.Category3Operator9SampleActivity"/>
+        <activity android:name=".category3_filtering_observables.Category3Operator10DebounceActivity"/>
+        <activity android:name=".category3_filtering_observables.Category3Operator11DistinctActivity"/>
+        <activity android:name=".category3_filtering_observables.Category3Operator12IgnoreElementsActivity"/>
+
+        <!--4 组合-->
+        <activity android:name=".category4_combining_observables.Category4_CombiningObservablesActivity" />
+        <activity android:name=".category4_combining_observables.Category4Operator1StartWithActivity" />
+        <activity android:name=".category4_combining_observables.Category4Operator2MergeActivity" />
+        <activity android:name=".category4_combining_observables.Category4Operator3ZipActivity" />
+        <activity android:name=".category4_combining_observables.Category4Operator4AndThenWhenActivity" />
+        <activity android:name=".category4_combining_observables.Category4Operator5CombineLatestActivity" />
+        <activity android:name=".category4_combining_observables.Category4Operator6JoinActivity" />
+        <activity android:name=".category4_combining_observables.Category4Operator7SwitchActivity" />
+        <!--end-->
 
         <activity android:name=".transportcontrol.FlatMapTransportActivity" />
         <activity android:name=".transportcontrol.RxjavaTransport" />
@@ -100,16 +135,15 @@
 
 
         <!--转换-->
-
-        <activity android:name=".category11_operators_to_convert_observables.Category11_OperatorsToConvertObservablesActivity"/>
-        <activity android:name=".category11_operators_to_convert_observables.Category11Operator1GetIteratorActivity"/>
-        <activity android:name=".category11_operators_to_convert_observables.Category11Operator2ToFutureActivity"/>
-        <activity android:name=".category11_operators_to_convert_observables.Category11Operator3ToIterableActivity"/>
-        <activity android:name=".category11_operators_to_convert_observables.Category11Operator4ToListActivity"/>
-        <activity android:name=".category11_operators_to_convert_observables.Category11Operator5ToMapActivity"/>
-        <activity android:name=".category11_operators_to_convert_observables.Category11Operator6ToMultiMapActivity"/>
-        <activity android:name=".category11_operators_to_convert_observables.Category11Operator7ToSortedListActivity"/>
-        <activity android:name=".category11_operators_to_convert_observables.Category11Operator8NestActivity"/>
+        <activity android:name=".category11_operators_to_convert_observables.Category11_OperatorsToConvertObservablesActivity" />
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator1GetIteratorActivity" />
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator2ToFutureActivity" />
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator3ToIterableActivity" />
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator4ToListActivity" />
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator5ToMapActivity" />
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator6ToMultiMapActivity" />
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator7ToSortedListActivity" />
+        <activity android:name=".category11_operators_to_convert_observables.Category11Operator8NestActivity" />
 
     </application>
 

@@ -8,6 +8,9 @@ import android.view.View;
 import com.nuoyuan.rxdemo.category10_connectable_observable_operators.Category10_ConnectableObservableOperatorsActivity;
 import com.nuoyuan.rxdemo.category11_operators_to_convert_observables.Category11_OperatorsToConvertObservablesActivity;
 import com.nuoyuan.rxdemo.category1_creating_observables.Category1_CreatingObservablesActivity;
+import com.nuoyuan.rxdemo.category2_transforming_observables.Category2_TransformingObservablesActivity;
+import com.nuoyuan.rxdemo.category3_filtering_observables.Category3_FilteringObservablesActivity;
+import com.nuoyuan.rxdemo.category4_combining_observables.Category4_CombiningObservablesActivity;
 import com.nuoyuan.rxdemo.category5_error_handling_operators.Category5_ErrorHandlingOperatorsActivity;
 import com.nuoyuan.rxdemo.category7_conditional_and_boolean_operators.Category7_ConditionalAndBooleanOperatorsActivity;
 import com.nuoyuan.rxdemo.category9_backpressure_operators.Category9_BackpressureOperatorsActivity;
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void jumpToTransformingObservablesActivity(View view) {
-        //   startActivity(new Intent(MainActivity.this, Category2_TransformingObservablesActivity.class));
+        startActivity(new Intent(MainActivity.this, Category2_TransformingObservablesActivity.class));
     }
 
     /**
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void jumpToFilteringObservablesActivity(View view) {
-        //  startActivity(new Intent(MainActivity.this, Category3_FilteringObservablesActivity.class));
+        startActivity(new Intent(MainActivity.this, Category3_FilteringObservablesActivity.class));
     }
 
     /**
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void jumpToCombiningObservablesActivity(View view) {
-//        startActivity(new Intent(MainActivity.this, Category11_OperatorsToConvertObservablesActivity.class));
+        startActivity(new Intent(MainActivity.this, Category4_CombiningObservablesActivity.class));
     }
 
     /**
