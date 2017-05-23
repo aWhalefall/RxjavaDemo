@@ -15,6 +15,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--创建操作-->
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1_CreatingObservablesActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator1CreateActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator2DeferActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator3_1EmptyActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator3_2NeverActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator3_3ThrowActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator4FromActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator5IntervalActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator6JustActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator7RangeActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator8RepeatActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator9StartActivity" />
+        <activity android:name="com.nuoyuan.rxdemo.category1_creating_observables.Category1Operator10TimerActivity" />
+
+
         <activity android:name=".transportcontrol.FlatMapTransportActivity" />
         <activity android:name=".transportcontrol.RxjavaTransport" />
         <activity android:name=".transportcontrol.Category2Operator3ScanActivity" />

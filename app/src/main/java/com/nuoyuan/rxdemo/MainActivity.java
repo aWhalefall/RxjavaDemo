@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.nuoyuan.rxdemo.category1_creating_observables.Category1_CreatingObservablesActivity;
 import com.nuoyuan.rxdemo.category5_error_handling_operators.Category5_ErrorHandlingOperatorsActivity;
 import com.nuoyuan.rxdemo.category7_conditional_and_boolean_operators.Category7_ConditionalAndBooleanOperatorsActivity;
 
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void jumpToCreatingObservablesActivity(View view) {
-//        startActivity(new Intent(MainActivity.this, .class));
+        startActivity(new Intent(MainActivity.this, Category1_CreatingObservablesActivity.class));
     }
 
     /**
