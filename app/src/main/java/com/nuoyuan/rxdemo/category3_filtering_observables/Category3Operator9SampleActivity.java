@@ -10,6 +10,9 @@ import java.util.concurrent.TimeUnit;
 import rx.Observable;
 import rx.Subscriber;
 
+/**
+ * 定期发射采样依赖最近的发射
+ */
 
 public class Category3Operator9SampleActivity extends SampleTempActivity {
 

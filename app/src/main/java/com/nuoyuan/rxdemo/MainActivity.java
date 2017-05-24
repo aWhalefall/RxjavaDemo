@@ -12,7 +12,9 @@ import com.nuoyuan.rxdemo.category2_transforming_observables.Category2_Transform
 import com.nuoyuan.rxdemo.category3_filtering_observables.Category3_FilteringObservablesActivity;
 import com.nuoyuan.rxdemo.category4_combining_observables.Category4_CombiningObservablesActivity;
 import com.nuoyuan.rxdemo.category5_error_handling_operators.Category5_ErrorHandlingOperatorsActivity;
+import com.nuoyuan.rxdemo.category6_observable_utility_operators.Category6_ObservableUtilityOperatorsActivity;
 import com.nuoyuan.rxdemo.category7_conditional_and_boolean_operators.Category7_ConditionalAndBooleanOperatorsActivity;
+import com.nuoyuan.rxdemo.category8_mathematical_and_aggregate_operators.Category8_MathematicalAndAggregateOperatorsActivity;
 import com.nuoyuan.rxdemo.category9_backpressure_operators.Category9_BackpressureOperatorsActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void jumpToObservableUtilityOperatorsActivity(View view) {
-        //   startActivity(new Intent(MainActivity.this, Category6_ObservableUtilityOperatorsActivity.class));
+        startActivity(new Intent(MainActivity.this, Category6_ObservableUtilityOperatorsActivity.class));
     }
 
     /**
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void jumpToMathematicalAndAggregateOperatorsActivity(View view) {
-        //   startActivity(new Intent(MainActivity.this, Category8_MathematicalAndAggregateOperatorsActivity.class));
+           startActivity(new Intent(MainActivity.this, Category8_MathematicalAndAggregateOperatorsActivity.class));
     }
 
     /**

@@ -42,19 +42,19 @@
         <!--end-->
 
         <!--过滤-->
-        <activity android:name=".category3_filtering_observables.Category3_FilteringObservablesActivity"/>
-        <activity android:name=".category3_filtering_observables.Category3Operator1FilterActivity"/>
-        <activity android:name=".category3_filtering_observables.Category3Operator2TakeLastActivity"/>
-        <activity android:name=".category3_filtering_observables.Category3Operator3LastActivity"/>
-        <activity android:name=".category3_filtering_observables.Category3Operator4SkipActivity"/>
-       <activity android:name=".category3_filtering_observables.Category3Operator5SkipLastActivity"/>
-        <activity android:name=".category3_filtering_observables.Category3Operator6TakeActivity"/>
-        <activity android:name=".category3_filtering_observables.Category3Operator7FirstActivity"/>
-        <activity android:name=".category3_filtering_observables.Category3Operator8ElementAtActivity"/>
-        <activity android:name=".category3_filtering_observables.Category3Operator9SampleActivity"/>
-        <activity android:name=".category3_filtering_observables.Category3Operator10DebounceActivity"/>
-        <activity android:name=".category3_filtering_observables.Category3Operator11DistinctActivity"/>
-        <activity android:name=".category3_filtering_observables.Category3Operator12IgnoreElementsActivity"/>
+        <activity android:name=".category3_filtering_observables.Category3_FilteringObservablesActivity" />
+        <activity android:name=".category3_filtering_observables.Category3Operator1FilterActivity" />
+        <activity android:name=".category3_filtering_observables.Category3Operator2TakeLastActivity" />
+        <activity android:name=".category3_filtering_observables.Category3Operator3LastActivity" />
+        <activity android:name=".category3_filtering_observables.Category3Operator4SkipActivity" />
+        <activity android:name=".category3_filtering_observables.Category3Operator5SkipLastActivity" />
+        <activity android:name=".category3_filtering_observables.Category3Operator6TakeActivity" />
+        <activity android:name=".category3_filtering_observables.Category3Operator7FirstActivity" />
+        <activity android:name=".category3_filtering_observables.Category3Operator8ElementAtActivity" />
+        <activity android:name=".category3_filtering_observables.Category3Operator9SampleActivity" />
+        <activity android:name=".category3_filtering_observables.Category3Operator10DebounceActivity" />
+        <activity android:name=".category3_filtering_observables.Category3Operator11DistinctActivity" />
+        <activity android:name=".category3_filtering_observables.Category3Operator12IgnoreElementsActivity" />
 
         <!--4 组合-->
         <activity android:name=".category4_combining_observables.Category4_CombiningObservablesActivity" />
@@ -65,6 +65,32 @@
         <activity android:name=".category4_combining_observables.Category4Operator5CombineLatestActivity" />
         <activity android:name=".category4_combining_observables.Category4Operator6JoinActivity" />
         <activity android:name=".category4_combining_observables.Category4Operator7SwitchActivity" />
+        <!--end-->
+
+        <!--辅助操作-->
+        <activity android:name=".category6_observable_utility_operators.Category6_ObservableUtilityOperatorsActivity" />
+        <activity android:name=".category6_observable_utility_operators.Category6Operator1MaterializeActivity" />
+        <activity android:name=".category6_observable_utility_operators.Category6Operator2DematerializeActivity" />
+        <activity android:name=".category6_observable_utility_operators.Category6Operator5ObserveOnActivity" />
+        <activity android:name=".category6_observable_utility_operators.Category6Operator3TimestampActivity" />
+        <activity android:name=".category6_observable_utility_operators.Category6Operator6SubscribeActivity" />
+        <activity android:name=".category6_observable_utility_operators.Category6Operator4SerializeActivity" />
+        <activity android:name=".category6_observable_utility_operators.Category6Operator7SubscribeOnActivity" />
+        <activity android:name=".category6_observable_utility_operators.Category6Operator8DelayActivity" />
+        <activity android:name=".category6_observable_utility_operators.Category6Operator9TimeIntervalActivity" />
+        <activity android:name=".category6_observable_utility_operators.Category6Operator10TimeoutActivity" />
+        <activity android:name=".category6_observable_utility_operators.Category6Operator11UsingActivity" />
+        <activity android:name=".category6_observable_utility_operators.Category6Operator12DoActivity" />
+
+        <!--算数聚合操作-->
+        <activity android:name=".category8_mathematical_and_aggregate_operators.Category8_MathematicalAndAggregateOperatorsActivity" />
+        <activity android:name=".category8_mathematical_and_aggregate_operators.Category8Operator1AverageActivity" />
+        <activity android:name=".category8_mathematical_and_aggregate_operators.Category8Operator2MaxActivity" />
+        <activity android:name=".category8_mathematical_and_aggregate_operators.Category8Operator3MinActivity" />
+        <activity android:name=".category8_mathematical_and_aggregate_operators.Category8Operator4SumActivity" />
+        <activity android:name=".category8_mathematical_and_aggregate_operators.Category8Operator5ConcatActivity"/>
+        <activity android:name=".category8_mathematical_and_aggregate_operators.Category8Operator6CountActivity" />
+        <activity android:name=".category8_mathematical_and_aggregate_operators.Category8Operator7ReduceActivity" />
         <!--end-->
 
         <activity android:name=".transportcontrol.FlatMapTransportActivity" />
@@ -81,43 +107,43 @@
         <!-- 7. 条件和布尔操作 start -->
         <activity
             android:name=".category7_conditional_and_boolean_operators.Category7_ConditionalAndBooleanOperatorsActivity"
-            android:label="@string/activity_main_7_conditional_and_boolean_operators"></activity>
+            android:label="@string/activity_main_7_conditional_and_boolean_operators" />
 
         <activity
             android:name=".category7_conditional_and_boolean_operators.Category7Operator1AmbActivity"
-            android:label="@string/activity_category7_conditional_and_boolean_operators_1_amb"></activity>
+            android:label="@string/activity_category7_conditional_and_boolean_operators_1_amb" />
 
         <activity
             android:name=".category7_conditional_and_boolean_operators.Category7Operator2DefaultIfEmptyActivity"
-            android:label="@string/activity_category7_conditional_and_boolean_operators_2_default_if_empty"></activity>
+            android:label="@string/activity_category7_conditional_and_boolean_operators_2_default_if_empty" />
 
         <activity
             android:name=".category7_conditional_and_boolean_operators.Category7Operator3SkipUntilActivity"
-            android:label="@string/activity_category7_conditional_and_boolean_operators_3_skip_until"></activity>
+            android:label="@string/activity_category7_conditional_and_boolean_operators_3_skip_until" />
 
         <activity
             android:name=".category7_conditional_and_boolean_operators.Category7Operator4SkipWhileActivity"
-            android:label="@string/activity_category7_conditional_and_boolean_operators_4_skip_while"></activity>
+            android:label="@string/activity_category7_conditional_and_boolean_operators_4_skip_while" />
 
         <activity
             android:name=".category7_conditional_and_boolean_operators.Category7Operator5TakeUntilActivity"
-            android:label="@string/activity_category7_conditional_and_boolean_operators_5_take_until"></activity>
+            android:label="@string/activity_category7_conditional_and_boolean_operators_5_take_until" />
 
         <activity
             android:name=".category7_conditional_and_boolean_operators.Category7Operator6TakeWhileActivity"
-            android:label="@string/activity_category7_conditional_and_boolean_operators_6_take_while"></activity>
+            android:label="@string/activity_category7_conditional_and_boolean_operators_6_take_while" />
 
         <activity
             android:name=".category7_conditional_and_boolean_operators.Category7Operator7AllActivity"
-            android:label="@string/activity_category7_conditional_and_boolean_operators_7_all"></activity>
+            android:label="@string/activity_category7_conditional_and_boolean_operators_7_all" />
 
         <activity
             android:name=".category7_conditional_and_boolean_operators.Category7Operator8ContainsActivity"
-            android:label="@string/activity_category7_conditional_and_boolean_operators_8_contains"></activity>
+            android:label="@string/activity_category7_conditional_and_boolean_operators_8_contains" />
 
         <activity
             android:name=".category7_conditional_and_boolean_operators.Category7Operator9SequenceEqualActivity"
-            android:label="@string/activity_category7_conditional_and_boolean_operators_9_sequence_equal"></activity>
+            android:label="@string/activity_category7_conditional_and_boolean_operators_9_sequence_equal" />
         <!-- 7. 条件和布尔操作 end -->
 
         <!--9 背压操作-->

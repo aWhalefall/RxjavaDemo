@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.nuoyuan.rxdemo.base.BaseActivity;
 import com.nuoyuan.rxdemo.R;
+import com.nuoyuan.rxdemo.base.BaseActivity;
 
 
 public class Category4_CombiningObservablesActivity extends BaseActivity {
@@ -20,6 +20,7 @@ public class Category4_CombiningObservablesActivity extends BaseActivity {
 
     /**
      * 4.1 startWith
+     *
      * @param view
      */
     public void jumpToCategory4Operator1StartWithActivity(View view) {
@@ -28,6 +29,7 @@ public class Category4_CombiningObservablesActivity extends BaseActivity {
 
     /**
      * 4.2 merge
+     *
      * @param view
      */
     public void jumpToCategory4Operator2MergeActivity(View view) {
@@ -36,6 +38,7 @@ public class Category4_CombiningObservablesActivity extends BaseActivity {
 
     /**
      * 4.3 zip
+     *
      * @param view
      */
     public void jumpToCategory4Operator3ZipActivity(View view) {
@@ -44,6 +47,7 @@ public class Category4_CombiningObservablesActivity extends BaseActivity {
 
     /**
      * 4.4 and/then/when
+     *
      * @param view
      */
     public void jumpToCategory4Operator4AndThenWhenActivity(View view) {
@@ -52,6 +56,7 @@ public class Category4_CombiningObservablesActivity extends BaseActivity {
 
     /**
      * 4.5 combineLatest
+     *
      * @param view
      */
     public void jumpToCategory4Operator5CombineLatestActivity(View view) {
@@ -60,6 +65,7 @@ public class Category4_CombiningObservablesActivity extends BaseActivity {
 
     /**
      * 4.6 join
+     *
      * @param view
      */
     public void jumpToCategory4Operator6JoinActivity(View view) {
@@ -68,6 +74,7 @@ public class Category4_CombiningObservablesActivity extends BaseActivity {
 
     /**
      * 4.7 switch
+     *
      * @param view
      */
     public void jumpToCategory4Operator7SwitchActivity(View view) {
