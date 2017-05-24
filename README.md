@@ -3,22 +3,9 @@
 ## rxjava 这么火，难道作为coder的你不想学习一下吗？
 
 
- ### 欢迎认领操作 整理 操作符号事例
- 
- ```
- 1.对api进行事例编写，并添加相应的注释
- 2.加上作者名字
- 3.负责认真
- 4.作为开源，更应该认真，负责
- 5.当然可以认识一些志同道合的朋友
- 
- ```
- 
-
  
  eg：
- 
- 
+
  Rxjava 中文翻译   https://mcxiaoke.gitbooks.io/rxdocs/content/Operators.html
  
  
