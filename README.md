@@ -271,10 +271,12 @@ Blocking 阻塞Observable的操作符
 从Observable发射的数据中取特定的值（过滤操作）
 转发Observable的部分值（条件/布尔/过滤操作）
 对Observable发射的数据序列求值（算术/聚合操作）
-```
 
---- 第二章 ，第三章，第四章 未完成。
+#### 增加进阶链接
 
-
+1.
+2.
+3.
+4.
 
 >rxjava 中文翻译文档 https://mcxiaoke.gitbooks.io/rxdocs/content/operators/Transforming-Observables.html
